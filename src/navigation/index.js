@@ -7,7 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import Favourite from "../screens/Favourite";
-import Test from "../screens/Test";
+import Home from "../screens/Home";
 import Login from "../screens/Login";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -70,7 +70,7 @@ function Tabs() {
     >
       <Tab.Screen
         name="Home"
-        component={Test}
+        component={Home}
         
       />
       <Tab.Screen

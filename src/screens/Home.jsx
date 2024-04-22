@@ -10,25 +10,15 @@ import RecipyCardOne from "../components/RacipyCardOne";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-// import {
-//   BellIcon,
-//   HeartIcon,
-//   MagnifyingGlassIcon,
-// } from "react-native-heroicons/outline";
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import NotificationIcon from "../../assets/NotificationIcon";
+import SearchIcon from "../../assets/SearchIcon";
 
-export default function Test() {
+export default function Home() {
   const Categories = ["beaf", "chicken", "mutton", "fish", "vegitables"];
-  const [heartColor, setHeartColor] = useState("white"); // Initial color
-
-  const toggleHeartColor = () => {
-    const newColor = heartColor === "white" ? "red" : "white"; // Toggle between white and red
-    setHeartColor(newColor);
-  };
 
   const recipes = [
     {
@@ -61,41 +51,31 @@ export default function Test() {
             source={require("../../assets/images/avatar.png")}
             style={{ height: hp("5"), width: wp("10") }}
           />
-          {/* <BellIcon size={hp("5")} color="gray" /> */}
+          <View className="bg-slate-100 ">
+            <NotificationIcon />
+          </View>
         </View>
         <View className="mx-4">
-          <Text
-            style={{
-              fontSize: hp(2),
-              marginTop: hp(4),
-            }}
-          >
+          <Text className="font-medium text-sm text-neutral-700 mt-2">
             Hello Arslan26!
           </Text>
-          <View className="mt-10">
-            <Text
-              style={{ fontSize: hp(3.8) }}
-              className="font-semibold text-neutral-600"
-            >
+          <View className="mt-3">
+            <Text className="font-semibold text-neutral-600 text-xl">
               Make your own food,
             </Text>
           </View>
-          <Text
-            style={{ fontSize: hp(3.8) }}
-            className="font-semibold text-neutral-600"
-          >
+          <Text className="font-semibold text-neutral-600 text-3xl">
             stay at <Text className="text-amber-400">Home</Text>
           </Text>
         </View>
-        <View className="mx-4 mt-7 flex-row items-center rounded-full p-[6px]  bg-black/5 px-4">
+        <View className="mx-4 mt-7 flex-row items-center rounded-full p-[6px]  bg-black/5 px-4 ">
           <TextInput
             placeholder="Search recipe"
-            // style={{ fontSize: hp(1.7) }}
             placeholderTextColor="gray"
             className="flex-1 mb-1 tracking-wider py-2 "
           />
           <TouchableOpacity className="bg-white rounded-full p-3">
-            {/* <MagnifyingGlassIcon size={hp(2.5)} strokeWidth={3} color="gray" /> */}
+            <SearchIcon />
           </TouchableOpacity>
         </View>
         {/* categories scroller setion here */}
@@ -120,12 +100,7 @@ export default function Test() {
                     source={require("../../assets/images/avatar.png")}
                   />
                 </View>
-                <Text
-                  style={{
-                    fontSize: hp(1.6),
-                  }}
-                  className="text-center text-neutral-500"
-                >
+                <Text className="text-center text-neutral-500 text-sm">
                   burger
                 </Text>
               </TouchableOpacity>
@@ -135,25 +110,11 @@ export default function Test() {
         {/* // recipy card here */}
         <View className="w-full mb-12">
           <View className="space-y-3 mx-4">
-            <Text
-              style={{
-                fontSize: hp(3),
-              }}
-              className="font-semibold text-neutral-700"
-            >
+            <Text className="font-semibold text-neutral-700 text-2xl">
               Recipes
             </Text>
           </View>
-          <View
-            style={{
-              width: wp(100),
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-              padding: 16,
-            }}
-          >
+          <View className="w-full flex flex-row flex-wrap justify-between px-4 mt-3">
             {recipes.map((recipie) => (
               <RecipyCardOne recipie={recipie} />
             ))}
