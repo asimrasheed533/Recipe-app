@@ -5,19 +5,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import HomeScreen from "../screens/HomeScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
-import RecipeDetailScreen from "../screens/RecipeDetailScreen";
 import Favourite from "../screens/Favourite";
 import Test from "../screens/Test";
 import Login from "../screens/Login";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  BookmarkIcon,
-  HomeIcon,
-  UserIcon,
-} from "react-native-heroicons/outline";
-import { Provider } from "react-redux";
+
 import RecipeDetailTest from "../screens/RecipeDetailTest";
 const Stack = createNativeStackNavigator();
 
@@ -78,18 +71,12 @@ function Tabs() {
       <Tab.Screen
         name="Home"
         component={Test}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <HomeIcon name="home" color={color} size={"30"} />
-          ),
-        }}
+        
       />
       <Tab.Screen
         name="Favourite"
         component={Favourite}
-        options={{
-          tabBarIcon: ({ color }) => <BookmarkIcon color={color} size={"30"} />,
-        }}
+      
       />
     </Tab.Navigator>
   );

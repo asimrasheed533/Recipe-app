@@ -8,7 +8,6 @@ import {
   Button,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ChevronUpIcon } from "react-native-heroicons/outline";
 import Signup from "./SignUp";
 import {
   widthPercentageToDP as wp,
@@ -25,6 +24,7 @@ import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from "react-native-gesture-handler";
+// import ArrowIcon from "../../assets/arrowIcon";
 
 export default function Login() {
   const [name, setName] = useState("");
@@ -69,7 +69,7 @@ export default function Login() {
               backgroundColor: "#FBEEEB",
             }}
           >
-            <View className="w-full items-center">
+            <View className="w-full items-center mt-12">
               <Image source={require("../../assets/logorecipy.png")} />
             </View>
 
@@ -133,34 +133,24 @@ export default function Login() {
                 style={{
                   backgroundColor: "#FF785B",
                 }}
-                className="w-full mt-20 items-center py-4 rounded-full"
+                className="w-full mt-10 items-center py-4 rounded-full"
               >
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: hp(2.5),
-                  }}
-                >
+                <Text className="text-white text-sm font-semibold	">
                   Sign In
                 </Text>
               </TouchableOpacity>
             </View>
-            <View className="w-full px-10 absolute bottom-0">
+            <View className="w-full px-8 absolute bottom-0 ">
               <TouchableOpacity
                 onPress={handlePresentModalPress}
                 style={{
                   backgroundColor: "#FF785B",
                 }}
-                className="w-full flex items-center py-3 rounded-t-[50px] pb-8"
+                className="w-full flex items-center py-3 rounded-t-[50px] pb-20 "
               >
-                <View>
-                  <ChevronUpIcon
-                    style={{
-                      color: "white",
-                      fontSize: hp(2.5),
-                    }}
-                  />
-                </View>
+                {/* <View>
+                  <ArrowIcon />
+                </View> */}
 
                 <Text
                   style={{
@@ -182,6 +172,9 @@ export default function Login() {
                   ref={bottomSheetModalRef}
                   index={0}
                   snapPoints={["80%"]}
+                  style={{
+                    borderRadius: 30,
+                  }}
                 >
                   <Signup />
                 </BottomSheetModal>

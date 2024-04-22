@@ -10,11 +10,11 @@ import RecipyCardOne from "../components/RacipyCardOne";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import {
-  BellIcon,
-  HeartIcon,
-  MagnifyingGlassIcon,
-} from "react-native-heroicons/outline";
+// import {
+//   BellIcon,
+//   HeartIcon,
+//   MagnifyingGlassIcon,
+// } from "react-native-heroicons/outline";
 
 import {
   widthPercentageToDP as wp,
@@ -61,7 +61,7 @@ export default function Test() {
             source={require("../../assets/images/avatar.png")}
             style={{ height: hp("5"), width: wp("10") }}
           />
-          <BellIcon size={hp("5")} color="gray" />
+          {/* <BellIcon size={hp("5")} color="gray" /> */}
         </View>
         <View className="mx-4">
           <Text
@@ -95,7 +95,7 @@ export default function Test() {
             className="flex-1 mb-1 tracking-wider py-2 "
           />
           <TouchableOpacity className="bg-white rounded-full p-3">
-            <MagnifyingGlassIcon size={hp(2.5)} strokeWidth={3} color="gray" />
+            {/* <MagnifyingGlassIcon size={hp(2.5)} strokeWidth={3} color="gray" /> */}
           </TouchableOpacity>
         </View>
         {/* categories scroller setion here */}

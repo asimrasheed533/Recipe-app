@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { CachedImage } from '../helpers/image';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { ChevronLeftIcon, ClockIcon, FireIcon } from 'react-native-heroicons/outline';
-import {  HeartIcon, Square3Stack3DIcon, UsersIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+
 import Loading from '../components/loading';
 import YouTubeIframe from 'react-native-youtube-iframe';
 import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
@@ -85,14 +83,14 @@ export default function RecipeDetailScreen(props) {
         </View>
 
         {/* back button */}
-        <Animated.View entering={FadeIn.delay(200).duration(1000)} className="w-full absolute flex-row justify-between items-center pt-14">
+        {/* <Animated.View entering={FadeIn.delay(200).duration(1000)} className="w-full absolute flex-row justify-between items-center pt-14">
             <TouchableOpacity onPress={()=> navigation.goBack()} className="p-2 rounded-full ml-5 bg-white">
                 <ChevronLeftIcon size={hp(3.5)} strokeWidth={4.5} color="#fbbf24" />
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> setIsFavourite(!isFavourite)} className="p-2 rounded-full mr-5 bg-white">
                 <HeartIcon size={hp(3.5)} strokeWidth={4.5} color={isFavourite? "red": "gray"} />
             </TouchableOpacity>
-        </Animated.View>
+        </Animated.View> */}
 
         {/* meal description */}
         {

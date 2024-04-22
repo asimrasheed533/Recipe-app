@@ -12,7 +12,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import Categories from "../components/categories";
 import axios from "axios";
 import Recipes from "../components/recipes";
@@ -73,7 +72,7 @@ export default function HomeScreen() {
             source={require("../../assets/images/avatar.png")}
             style={{ height: hp(5), width: hp(5.5) }}
           />
-          <BellIcon size={hp(4)} color="gray" />
+          {/* <BellIcon size={hp(4)} color="gray" /> */}
         </View>
 
         {/* greetings and punchline */}
@@ -136,7 +135,7 @@ export default function HomeScreen() {
             className="flex-1 text-base mb-1 pl-3 tracking-wider"
           />
           <View className="bg-white rounded-full p-3">
-            <MagnifyingGlassIcon size={hp(2.5)} strokeWidth={3} color="gray" />
+            {/* <MagnifyingGlassIcon size={hp(2.5)} strokeWidth={3} color="gray" /> */}
           </View>
         </View>
 

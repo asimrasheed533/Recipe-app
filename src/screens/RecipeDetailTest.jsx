@@ -3,7 +3,6 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import YouTubeIframe from "react-native-youtube-iframe";
 import Animated, { FadeInDown, FadeIn } from "react-native-reanimated";
-import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -29,7 +28,7 @@ export default function RecipeDetailTest() {
             onPress={() => navigation.goBack()}
             className="p-2 rounded-full ml-5 red"
           >
-            <ChevronLeftIcon size={hp(3.5)} strokeWidth={4} color="#fbbf24" />
+            {/* <ChevronLeftIcon size={hp(3.5)} strokeWidth={4} color="#fbbf24" /> */}
           </TouchableOpacity>
           <View>
             <Text
