@@ -57,7 +57,7 @@ export default function RecipeDetail() {
           />
         </View>
         <View className="px-6">
-          <Text className="text-2xl font-bold mt-4 text-black  ">
+          <Text className="text-2xl font-bold  text-black  ">
             Octopus with citrus salad & herbs
           </Text>
         </View>
@@ -87,7 +87,7 @@ function IngredientsCard() {
       style={{
         backgroundColor: "#F1F3F5",
       }}
-      className="px-6 mx-4 mt-4 flex-row justify-center items-center rounded-3xl"
+      className="px-6 mx-4 mt-4 flex-row justify-center items-center rounded-xl"
     >
       <View className="p-2 ">
         <Image

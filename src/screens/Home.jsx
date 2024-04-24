@@ -84,35 +84,31 @@ export default function Home() {
           showsHorizontalScrollIndicator={false}
           className="my-8 space-x-4 px-4"
         >
-          {Categories.map((category, index) => {
-            return (
-              <TouchableOpacity
-                className="
+          {Categories.map((category, index) => (
+            <TouchableOpacity
+              className="
           flex items-center space-y-1"
-              >
-                <View className="rounded-full">
-                  <Image
-                    className="rounded-full"
-                    style={{
-                      height: hp(8),
-                      width: wp(16),
-                    }}
-                    source={require("../../assets/images/avatar.png")}
-                  />
-                </View>
-                <Text className="text-center text-neutral-500 text-sm">
-                  burger
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
+            >
+              <View className="rounded-full">
+                <Image
+                  className="rounded-full"
+                  style={{
+                    height: hp(8),
+                    width: wp(16),
+                  }}
+                  source={require("../../assets/images/avatar.png")}
+                />
+              </View>
+              <Text className="text-center text-neutral-500 text-sm">
+                burger
+              </Text>
+            </TouchableOpacity>
+          ))}
         </ScrollView>
         {/* // recipy card here */}
         <View className="w-full mb-12">
           <View className="space-y-3 mx-4">
-            <Text className="font-semibold text-neutral-700 text-2xl">
-              Recipes
-            </Text>
+            <Text className="font-bold text-neutral-700 text-2xl">Recipes</Text>
           </View>
           <View className="w-full flex flex-row flex-wrap justify-between px-4 mt-3">
             {recipes.map((recipie) => (

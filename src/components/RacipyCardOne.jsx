@@ -1,11 +1,8 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 // import { HeartIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import FavouriteIcon from "../../assets/FavouriteIcon";
 // import { useDispatch, useSelector } from "react-redux";
 
 export default function RacipyCardOne({ recipie }) {
@@ -22,8 +19,9 @@ export default function RacipyCardOne({ recipie }) {
     >
       <Image
         style={{
-          width: wp("45%"),
-          borderRadius: 30,
+          width: "100%",
+          height: 220,
+          borderRadius: 20,
         }}
         source={require("../../assets/mbff.webp")}
       />
@@ -31,18 +29,11 @@ export default function RacipyCardOne({ recipie }) {
         onPress={toggleHeartColor}
         className="absolute py-4 mx-4 top-0 right-0"
       >
-        {/* <HeartIcon size={hp("5")} color={heartColor} /> */}
+        <FavouriteIcon />
       </TouchableOpacity>
 
       <View className="absolute bottom-1 left-2 right-2 flex justify-between items-center px-3 py-2 bg-black/50 rounded-2xl">
-        <Text
-          style={{
-            fontSize: hp(2),
-            color: "white",
-          }}
-        >
-          {recipie.title}
-        </Text>
+        <Text className="text-white text-sm">{recipie.title}</Text>
       </View>
     </TouchableOpacity>
   );

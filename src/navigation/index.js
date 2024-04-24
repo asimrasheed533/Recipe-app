@@ -9,9 +9,11 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import Favourite from "../screens/Favourite";
 import Home from "../screens/Home";
 import Login from "../screens/Login";
+import HomeIcon from "../../assets/HomeIcon";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import RecipeDetail from "../screens/RecipeDetail";
+import FavouriteIcon from "../../assets/FavouriteIcon";
 const Stack = createNativeStackNavigator();
 
 function AppNavigation() {
@@ -60,23 +62,34 @@ function Tabs() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 60,
+          height: 70,
           position: "absolute",
-          right: 16,
-          left: 16,
-          borderRadius: 16,
+          borderRadius: 40,
+        paddingVertical: 30,
         },
       }}
     >
       <Tab.Screen
         name="Home"
         component={Home}
-        
+    options={{
+      tabBarLabel:"",
+      headerShown:false,
+      tabBarIcon:({focused, color})=>{
+        return focused? <HomeIcon /> : <HomeIcon filled />
+      }
+    }}
       />
       <Tab.Screen
-        name="Favourite"
+      name="Favourite"
         component={Favourite}
-      
+      options={{
+        tabBarLabel:"",
+        headerShown:false,
+        tabBarIcon:({focused, color})=>{
+          return focused? <FavouriteIcon /> : <FavouriteIcon filled />
+        }
+      }}
       />
     </Tab.Navigator>
   );
