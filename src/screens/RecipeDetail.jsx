@@ -3,13 +3,9 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import YouTubeIframe from "react-native-youtube-iframe";
 import Animated, { FadeInDown, FadeIn } from "react-native-reanimated";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 import { useNavigation } from "@react-navigation/native";
-
-export default function RecipeDetailTest() {
+import BackIcon from "../../assets/BackIcon";
+export default function RecipeDetail() {
   const navigation = useNavigation();
   return (
     <SafeAreaView
@@ -19,42 +15,33 @@ export default function RecipeDetailTest() {
       }}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* back button */}
         <Animated.View
           entering={FadeIn.delay(200).duration(1000)}
-          className="w-full absolute flex-row justify-between items-center pt-10"
+          className=" m-3 flex-row justify-between items-start"
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            className="p-2 rounded-full ml-5 red"
+            className="p-2 rounded-full red"
           >
-            {/* <ChevronLeftIcon size={hp(3.5)} strokeWidth={4} color="#fbbf24" /> */}
+            <BackIcon />
           </TouchableOpacity>
-          <View>
-            <Text
-              style={{
-                fontSize: hp(2.5),
-                color: "black",
 
-                fontWeight: "600",
-                marginRight: wp(8),
-              }}
-            >
-              Recipe Detail
-            </Text>
-          </View>
+          <Text className="text-xl font-semibold text-black">
+            Recipe Detail
+          </Text>
         </Animated.View>
+
         <View
           style={{
             borderRadius: 25,
             backgroundColor: "#ffffff",
             shadowColor: "#000",
-            marginTop: hp(10),
+
             shadowOffset: {
               width: 0,
-              height: 5,
+              height: 1,
             },
-            shadowOpacity: 0.25,
+            shadowOpacity: 0.15,
             shadowRadius: 3.84,
             elevation: 5, // For Android shadow
             padding: 10,
@@ -66,46 +53,22 @@ export default function RecipeDetailTest() {
               overScrollMode: "never", // a fix for webview on android - which didn't work :(
             }}
             videoId={"1UM1oGnLsZE"}
-            height={hp(28)}
+            height={185}
           />
         </View>
         <View className="px-6">
-          <Text
-            style={{
-              fontSize: hp(4),
-              color: "black",
-              lineHeight: hp(5),
-              fontWeight: "700",
-            }}
-          >
+          <Text className="text-2xl font-bold mt-4 text-black  ">
             Octopus with citrus salad & herbs
           </Text>
         </View>
         <View className="px-6">
-          <Text
-            style={{
-              fontSize: hp(2.2),
-              color: "black",
-              marginTop: hp(2),
-              fontWeight: "500",
-            }}
-          >
+          <Text className="text-sm text-neutral-700 ">
             Sem aliquet sit urna aliquam vitae nisl convallis ac, tristique. Nec
             lectus eget feugiat ornare.
           </Text>
         </View>
         <View className="px-6">
-          <Text
-            style={{
-              fontSize: hp(2.5),
-              color: "black",
-              marginTop: hp(2),
-              lineHeight: hp(5),
-              fontWeight: "700",
-            }}
-          >
-            Ingredients
-          </Text>
+          <Text className="text-xl font-semibold mt-4">Ingredients</Text>
         </View>
 
         <IngredientsCard />
@@ -134,15 +97,7 @@ function IngredientsCard() {
       </View>
       <View className="p-4">
         <View>
-          <Text
-            style={{
-              fontSize: hp(2.5),
-              fontWeight: "700",
-              paddingBottom: hp(1),
-            }}
-          >
-            30g
-          </Text>
+          <Text className="text-xl font-semibold text-black">30g</Text>
         </View>
         <View className="overflow-hidden">
           <Text>

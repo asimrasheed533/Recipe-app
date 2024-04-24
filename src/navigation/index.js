@@ -11,7 +11,7 @@ import Home from "../screens/Home";
 import Login from "../screens/Login";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import RecipeDetailTest from "../screens/RecipeDetailTest";
+import RecipeDetail from "../screens/RecipeDetail";
 const Stack = createNativeStackNavigator();
 
 function AppNavigation() {
@@ -25,8 +25,8 @@ function AppNavigation() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Tabs" component={Tabs} />
         <Stack.Screen
-          name="RecipeDetailTest"
-          component={RecipeDetailTest}
+          name="RecipeDetail"
+          component={RecipeDetail}
           options={{
             presentation: "fullScreenModal",
 

@@ -17,7 +17,7 @@ export default function RacipyCardOne({ recipie }) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("RecipeDetailTest")}
+      onPress={() => navigation.navigate("RecipeDetail")}
       className="flex justify-center space-y-1 relative mb-4 w-[48%]"
     >
       <Image
