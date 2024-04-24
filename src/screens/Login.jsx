@@ -63,22 +63,12 @@ export default function Login() {
       <BottomSheetModalProvider>
         <SafeAreaView>
           <StatusBar style="dark" />
-          <View
-            style={{
-              height: hp("100%"),
-              backgroundColor: "#FBEEEB",
-            }}
-          >
+          <View className="w-full h-full">
             <View className="w-full items-center mt-12">
               <Image source={require("../../assets/logorecipy.png")} />
             </View>
 
-            <View
-              style={{
-                marginTop: 20,
-              }}
-              className="mx-10 flex-row items-center rounded-full  bg-white "
-            >
+            <View className="mx-10 mt-10 flex-row items-center rounded-full  bg-white ">
               <TextInput
                 maxLength={50}
                 onChangeText={(text) => {
@@ -100,12 +90,7 @@ export default function Login() {
               ) : null}
             </View>
 
-            <View
-              style={{
-                marginTop: 30,
-              }}
-              className="mx-10 flex-row items-center rounded-full bg-white"
-            >
+            <View className="mx-10 mt-6 flex-row items-center rounded-full bg-white">
               <TextInput
                 onChangeText={(text) => {
                   if (!text) {
@@ -146,18 +131,9 @@ export default function Login() {
                 style={{
                   backgroundColor: "#FF785B",
                 }}
-                className="w-full flex items-center py-3 rounded-t-[50px] pb-20 "
+                className="w-full flex items-center py-3 rounded-t-[50px] pb-10 "
               >
-                {/* <View>
-                  <ArrowIcon />
-                </View> */}
-
-                <Text
-                  style={{
-                    color: "white",
-                    fontSize: hp(2.5),
-                  }}
-                >
+                <Text className="text-white text-lg font-semibold	">
                   Sign Up
                 </Text>
               </TouchableOpacity>

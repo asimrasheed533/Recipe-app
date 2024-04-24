@@ -5,6 +5,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import RecipyCardOne from "../components/RacipyCardOne";
 import React, { useState } from "react";
@@ -110,10 +111,17 @@ export default function Home() {
           <View className="space-y-3 mx-4">
             <Text className="font-bold text-neutral-700 text-2xl">Recipes</Text>
           </View>
-          <View className="w-full flex flex-row flex-wrap justify-between px-4 mt-3">
-            {recipes.map((recipie) => (
-              <RecipyCardOne recipie={recipie} />
-            ))}
+          <View className="border px-4 mt-3">
+            <FlatList
+              scrollEnabled={false}
+              data={recipes}
+              renderItem={({ item }) => <RecipyCardOne recipie={item} />}
+              keyExtractor={(item) => item.id}
+              numColumns={2}
+              ListEmptyComponent={() => <Text>no data</Text>}
+              ItemSeparatorComponent={() => <View className="h-3" />}
+              columnWrapperStyle={{ justifyContent: "space-between" }}
+            />
           </View>
         </View>
       </ScrollView>

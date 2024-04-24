@@ -15,12 +15,12 @@ export default function RacipyCardOne({ recipie }) {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("RecipeDetail")}
-      className="flex justify-center space-y-1 relative mb-4 w-[48%]"
+      className="flex justify-center space-y-1 relative w-[48%]"
     >
       <Image
         style={{
           width: "100%",
-          height: 220,
+          height: 200,
           borderRadius: 20,
         }}
         source={require("../../assets/mbff.webp")}

@@ -43,29 +43,6 @@ export default function SignUp() {
 
     if (name && email && email.includes("@") && password && ConfirmPassword) {
       setProcessing(true);
-      // axios
-      //   .post("/api/users/register", {
-      //     name,
-      //     email,
-      //     password,
-      //   })
-      //   .then((res) => {
-      //     console.log(res.data);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   })
-      //   .finally(() => {
-      //     setNameError(null);
-      //     setEmailError(null);
-      //     setPasswordError(null);
-      //     setConfirmPasswordError(null);
-      //     setName("");
-      //     setEmail("");
-      //     setPassword("");
-      //     setConfirmPassword("");
-      //     setProcessing(false);
-      //   });
     }
   }
 
