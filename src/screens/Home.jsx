@@ -19,7 +19,16 @@ import NotificationIcon from "../../assets/NotificationIcon";
 import SearchIcon from "../../assets/SearchIcon";
 
 export default function Home() {
-  const Categories = ["beaf", "chicken", "mutton", "fish", "vegitables"];
+  const Categories = [
+    "beaf",
+    "chicken",
+    "mutton",
+    "fish",
+    "vegitables",
+    "burger",
+    "burger",
+    "burger",
+  ];
 
   const recipes = [
     {
@@ -41,6 +50,14 @@ export default function Home() {
     {
       id: 5,
       title: "vegitables burger",
+    },
+    {
+      id: 6,
+      title: "vegitables burger",
+    },
+    {
+      id: 7,
+      title: "vegitables pizza",
     },
   ];
   return (
@@ -69,13 +86,13 @@ export default function Home() {
             stay at <Text className="text-amber-400">Home</Text>
           </Text>
         </View>
-        <View className="mx-4 mt-7 flex-row items-center rounded-full p-[6px]  bg-black/5 px-4 ">
+        <View className="mx-4 mt-7 flex-row items-center rounded-full p-[2px]  bg-black/5 px-4 ">
           <TextInput
             placeholder="Search recipe"
             placeholderTextColor="gray"
-            className="flex-1 mb-1 tracking-wider py-2 "
+            className="flex-1  tracking-wider py-2"
           />
-          <TouchableOpacity className="bg-white rounded-full p-3">
+          <TouchableOpacity className="bg-white rounded-full p-2">
             <SearchIcon />
           </TouchableOpacity>
         </View>
@@ -86,22 +103,15 @@ export default function Home() {
           className="my-8 space-x-4 px-4"
         >
           {Categories.map((category, index) => (
-            <TouchableOpacity
-              className="
-          flex items-center space-y-1"
-            >
+            <TouchableOpacity className="flex items-center space-y-1">
               <View className="rounded-full">
                 <Image
-                  className="rounded-full"
-                  style={{
-                    height: hp(8),
-                    width: wp(16),
-                  }}
+                  className="rounded-full h-12 w-12"
                   source={require("../../assets/images/avatar.png")}
                 />
               </View>
               <Text className="text-center text-neutral-500 text-sm">
-                burger
+                {category}
               </Text>
             </TouchableOpacity>
           ))}
@@ -111,7 +121,7 @@ export default function Home() {
           <View className="space-y-3 mx-4">
             <Text className="font-bold text-neutral-700 text-2xl">Recipes</Text>
           </View>
-          <View className="border px-4 mt-3">
+          <View className="px-4 mt-3">
             <FlatList
               scrollEnabled={false}
               data={recipes}
