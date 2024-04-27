@@ -28,16 +28,16 @@ export default function WelcomeScreen() {
     setTimeout(() => navigation.navigate("Login"), 2500);
   }, []);
   return (
-    <View className="flex-1 justify-center items-center space-y-10 bg-amber-500">
+    <View className="flex-1 justify-center items-center space-y-10 bg-[#f17340e7]">
       <StatusBar style="light" />
 
       {/* logo image with rings */}
       <Animated.View
-        className="bg-white/20 rounded-full"
+        className="bg-[#f8f8f818] rounded-full"
         style={{ padding: ring2padding }}
       >
         <Animated.View
-          className="bg-white/20 rounded-full"
+          className="bg-[#ffffff5b] rounded-full"
           style={{ padding: ring1padding }}
         >
           <Image
