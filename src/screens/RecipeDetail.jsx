@@ -8,16 +8,11 @@ import BackIcon from "../../assets/BackIcon";
 export default function RecipeDetail() {
   const navigation = useNavigation();
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: "white",
-        flex: 1,
-      }}
-    >
+    <SafeAreaView className=" bg-slate-200 px-4">
       <ScrollView showsVerticalScrollIndicator={false}>
         <Animated.View
           entering={FadeIn.delay(200).duration(1000)}
-          className=" m-3 flex-row justify-between items-start"
+          className=" my-3 flex-row justify-between items-start "
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
@@ -26,14 +21,14 @@ export default function RecipeDetail() {
             <BackIcon />
           </TouchableOpacity>
 
-          <Text className="text-xl font-semibold text-black">
+          <Text className="text-sm font-semibold text-black">
             Recipe Detail
           </Text>
         </Animated.View>
 
         <View
           style={{
-            borderRadius: 25,
+            borderRadius: 16,
             backgroundColor: "#ffffff",
             shadowColor: "#000",
 
@@ -45,7 +40,6 @@ export default function RecipeDetail() {
             shadowRadius: 3.84,
             elevation: 5, // For Android shadow
             padding: 10,
-            margin: 10,
           }}
         >
           <YouTubeIframe
@@ -53,21 +47,21 @@ export default function RecipeDetail() {
               overScrollMode: "never", // a fix for webview on android - which didn't work :(
             }}
             videoId={"1UM1oGnLsZE"}
-            height={185}
+            height={160}
           />
         </View>
-        <View className="px-6">
-          <Text className="text-2xl font-bold  text-black  ">
+        <View>
+          <Text className="text-xl font-bold mt-4  text-black  ">
             Octopus with citrus salad & herbs
           </Text>
         </View>
-        <View className="px-6">
-          <Text className="text-sm text-neutral-700 ">
+        <View>
+          <Text className="text-xs text-neutral-700 ">
             Sem aliquet sit urna aliquam vitae nisl convallis ac, tristique. Nec
             lectus eget feugiat ornare.
           </Text>
         </View>
-        <View className="px-6">
+        <View>
           <Text className="text-xl font-semibold mt-4">Ingredients</Text>
         </View>
 
@@ -87,7 +81,7 @@ function IngredientsCard() {
       style={{
         backgroundColor: "#F1F3F5",
       }}
-      className="px-6 mx-4 mt-4 flex-row justify-center items-center rounded-xl"
+      className="px-6 mt-4 flex-row justify-center items-center rounded-xl"
     >
       <View className="p-2 ">
         <Image
@@ -97,10 +91,10 @@ function IngredientsCard() {
       </View>
       <View className="p-4">
         <View>
-          <Text className="text-xl font-semibold text-black">30g</Text>
+          <Text className="text-base font-semibold text-black">30g</Text>
         </View>
         <View className="overflow-hidden">
-          <Text>
+          <Text className="text-xs">
             Laoreet eget tristique nullam vel at sagittis. In lobortis
             fermentum.
           </Text>

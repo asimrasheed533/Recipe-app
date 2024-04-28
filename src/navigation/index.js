@@ -62,10 +62,11 @@ function Tabs() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 70,
+          height: 60,
+          paddingTop:10,
           position: "absolute",
-          borderRadius: 40,
-        paddingVertical: 30,
+          borderRadius: 30,
+        
         },
       }}
     >

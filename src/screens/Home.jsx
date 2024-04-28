@@ -124,7 +124,7 @@ export default function Home() {
           <View className="space-y-3">
             <Text className="font-bold text-neutral-700 text-2xl">Recipes</Text>
           </View>
-          <View className="px-4 mt-3">
+          <View className="px-4 mt-3 mb-16">
             <FlatList
               scrollEnabled={false}
               data={recipes}
