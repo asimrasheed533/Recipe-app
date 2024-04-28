@@ -32,8 +32,8 @@ export default function RacipyCardOne({ recipie }) {
         <FavouriteIcon />
       </TouchableOpacity>
 
-      <View className="absolute bottom-1 left-2 right-2 flex justify-between items-center px-3 py-2 bg-black/50 rounded-2xl">
-        <Text className="text-white text-sm">{recipie.title}</Text>
+      <View className="absolute bottom-1 w-full justify-between items-center p-2 bg-black/50 rounded-full">
+        <Text className="text-white text-[10px]">{recipie.title}</Text>
       </View>
     </TouchableOpacity>
   );

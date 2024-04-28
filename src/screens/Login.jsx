@@ -6,13 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Signup from "./SignUp";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState } from "react";
 
@@ -24,7 +21,6 @@ import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from "react-native-gesture-handler";
-// import ArrowIcon from "../../assets/arrowIcon";
 
 export default function Login() {
   const [name, setName] = useState("");
@@ -61,14 +57,17 @@ export default function Login() {
   return (
     <GestureHandlerRootView>
       <BottomSheetModalProvider>
-        <SafeAreaView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          className=" bg-slate-300 px-4"
+        >
           <StatusBar style="dark" />
-          <View className="w-full h-full">
+          <SafeAreaView>
             <View className="w-full items-center mt-12">
               <Image source={require("../../assets/logorecipy.png")} />
             </View>
 
-            <View className="mx-10 mt-10 flex-row items-center rounded-full  bg-white ">
+            <View className=" mt-10 flex-row items-center rounded-full  bg-white ">
               <TextInput
                 maxLength={50}
                 onChangeText={(text) => {
@@ -90,7 +89,7 @@ export default function Login() {
               ) : null}
             </View>
 
-            <View className="mx-10 mt-6 flex-row items-center rounded-full bg-white">
+            <View className=" mt-6 flex-row items-center rounded-full bg-white">
               <TextInput
                 onChangeText={(text) => {
                   if (!text) {
@@ -111,7 +110,7 @@ export default function Login() {
               ) : null}
             </View>
 
-            <View className="w-full px-12 ">
+            <View className="px-12 ">
               <TouchableOpacity
                 // onPress={handelSubmit}
                 onPress={() => navigation.navigate("Tabs")}
@@ -125,13 +124,10 @@ export default function Login() {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View className="w-full px-8 absolute bottom-0 ">
+            <View className="w-full mt-3 ">
               <TouchableOpacity
                 onPress={handlePresentModalPress}
-                style={{
-                  backgroundColor: "#FF785B",
-                }}
-                className="w-full flex items-center py-3 rounded-t-[50px] pb-10 "
+                className=" bg-[#FF785B] w-full flex items-center py-3 rounded-t-[50px] pb-10 "
               >
                 <Text className="text-white text-lg font-semibold	">
                   Sign Up
@@ -156,8 +152,8 @@ export default function Login() {
                 </BottomSheetModal>
               </View>
             </View>
-          </View>
-        </SafeAreaView>
+          </SafeAreaView>
+        </ScrollView>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );

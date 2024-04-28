@@ -63,8 +63,8 @@ export default function Home() {
   return (
     <SafeAreaView>
       <StatusBar style="dark" />
-      <ScrollView showsVerticalScrollIndicator={false} className="pt-10">
-        <View className="mx-4 flex-row justify-between items-start">
+      <ScrollView showsVerticalScrollIndicator={false} className="pt-10 mx-4">
+        <View className=" flex-row justify-between items-start">
           <Image
             source={require("../../assets/images/avatar.png")}
             style={{ height: hp("5"), width: wp("10") }}
@@ -73,7 +73,7 @@ export default function Home() {
             <NotificationIcon />
           </View>
         </View>
-        <View className="mx-4">
+        <View>
           <Text className="font-medium text-sm text-neutral-700 mt-2">
             Hello Arslan26!
           </Text>
@@ -86,11 +86,11 @@ export default function Home() {
             stay at <Text className="text-amber-400">Home</Text>
           </Text>
         </View>
-        <View className="mx-4 mt-7 flex-row items-center rounded-full p-[2px]  bg-black/5 px-4 ">
+        <View className=" mt-7 flex-row items-center rounded-full  bg-black/5 px-3 ">
           <TextInput
             placeholder="Search recipe"
             placeholderTextColor="gray"
-            className="flex-1  tracking-wider py-2"
+            className="flex-1 text-xs tracking-wider py-2"
           />
           <TouchableOpacity className="bg-white rounded-full p-2">
             <SearchIcon />
@@ -100,17 +100,20 @@ export default function Home() {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          className="my-8 space-x-4 px-4"
+          className="my-8 space-x-4"
         >
           {Categories.map((category, index) => (
-            <TouchableOpacity className="flex items-center space-y-1">
+            <TouchableOpacity
+              key={index}
+              className="flex items-center space-y-1"
+            >
               <View className="rounded-full">
                 <Image
                   className="rounded-full h-12 w-12"
                   source={require("../../assets/images/avatar.png")}
                 />
               </View>
-              <Text className="text-center text-neutral-500 text-sm">
+              <Text className="text-center text-neutral-500 text-[10px]">
                 {category}
               </Text>
             </TouchableOpacity>
@@ -118,7 +121,7 @@ export default function Home() {
         </ScrollView>
         {/* // recipy card here */}
         <View className="w-full mb-12">
-          <View className="space-y-3 mx-4">
+          <View className="space-y-3">
             <Text className="font-bold text-neutral-700 text-2xl">Recipes</Text>
           </View>
           <View className="px-4 mt-3">
