@@ -80,7 +80,7 @@ export default function Login() {
                   setName(text);
                 }}
                 autoCapitalize="none"
-                className="w-full py-2 px-4 focus:border border border-transparent rounded-full focus:border-red-500"
+                className="w-full text-xs py-2 px-4 focus:border border border-transparent rounded-full focus:border-red-500"
                 placeholder="Full Name"
               />
               {nameError !== "" ? (
@@ -101,7 +101,7 @@ export default function Login() {
                   setPassword(text);
                 }}
                 autoCapitalize="none"
-                className="w-full py-2 px-4 focus:border border-transparent  border rounded-full focus:border-red-500"
+                className="w-full py-2 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
                 placeholder="Password"
               />
               {passwordError !== "" ? (
