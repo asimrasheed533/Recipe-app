@@ -63,7 +63,7 @@ function Tabs() {
         headerShown: false,
         tabBarStyle: {
           height: 60,
-          paddingTop:10,
+          paddingTop:20,
           position: "absolute",
           borderRadius: 30,
         
