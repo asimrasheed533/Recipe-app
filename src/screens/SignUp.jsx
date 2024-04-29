@@ -74,7 +74,7 @@ export default function SignUp() {
           >
             <TextInput
               value={name}
-              className="w-full py-2 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
+              className="w-full py-3 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
               placeholder="Name"
               onChangeText={(text) => {
                 if (!text) {
@@ -99,7 +99,7 @@ export default function SignUp() {
           >
             <TextInput
               keyboardType="email-address"
-              className="w-full py-2 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
+              className="w-full py-3 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
               placeholder="Email"
               value={email}
               onChangeText={(text) => {
@@ -128,7 +128,7 @@ export default function SignUp() {
           >
             <TextInput
               secureTextEntry={true}
-              className="w-full py-2 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
+              className="w-full py-3 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
               placeholder="Enter Password"
               value={password}
               onChangeText={(text) => {
@@ -157,7 +157,7 @@ export default function SignUp() {
             <TextInput
               secureTextEntry={true}
               value={ConfirmPassword}
-              className="w-full py-2 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
+              className="w-full py-3 px-4 border rounded-full border-transparent focus:border focus:border-red-500"
               placeholder="Confirm Password"
               onChangeText={(text) => {
                 if (!text) {

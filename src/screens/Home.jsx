@@ -86,7 +86,7 @@ export default function Home() {
             stay at <Text className="text-amber-400">Home</Text>
           </Text>
         </View>
-        <View className=" mt-7 flex-row items-center rounded-full  bg-black/5 px-3 ">
+        <View className=" mt-7 py-2 flex-row items-center rounded-full  bg-black/5 px-3 ">
           <TextInput
             placeholder="Search recipe"
             placeholderTextColor="gray"

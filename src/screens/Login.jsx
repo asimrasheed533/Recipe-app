@@ -55,16 +55,19 @@ export default function Login() {
   }
 
   return (
-    <GestureHandlerRootView className="flex-1 bg-slate-300 relative">
+    <GestureHandlerRootView className=" flex-1 bg-slate-300 relative">
       <BottomSheetModalProvider>
-        <ScrollView showsVerticalScrollIndicator={false} className="  px-4">
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          className="border mx-5 rounded-2xl "
+        >
           <StatusBar style="dark" />
           <SafeAreaView>
             <View className="w-full items-center mt-12">
               <Image source={require("../../assets/logorecipy.png")} />
             </View>
-            <Text className=" mt-10 text-xs text-orange-500">Enter Name</Text>
-            <View className=" mt-1 flex-row items-center rounded-full  bg-white ">
+            <Text className=" mt-10 text-xs mx-4 ">Enter Name</Text>
+            <View className=" mt-1 mx-3 flex-row items-center rounded-full  bg-white ">
               <TextInput
                 maxLength={50}
                 onChangeText={(text) => {
@@ -76,7 +79,7 @@ export default function Login() {
                   setName(text);
                 }}
                 autoCapitalize="none"
-                className="w-full text-xs py-2 px-4 focus:border border border-transparent rounded-full focus:border-red-500"
+                className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
                 placeholder="Full Name"
               />
               {nameError !== "" ? (
@@ -85,10 +88,8 @@ export default function Login() {
                 </Text>
               ) : null}
             </View>
-            <Text className=" mt-4 text-xs text-orange-500">
-              Enter Password
-            </Text>
-            <View className=" mt-1 flex-row items-center rounded-full bg-white">
+            <Text className=" mt-4 mx-4 text-xs ">Enter Password</Text>
+            <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
               <TextInput
                 onChangeText={(text) => {
                   if (!text) {
@@ -99,7 +100,7 @@ export default function Login() {
                   setPassword(text);
                 }}
                 autoCapitalize="none"
-                className="w-full py-2 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
+                className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
                 placeholder="Password"
               />
               {passwordError !== "" ? (
@@ -123,33 +124,26 @@ export default function Login() {
                 </Text>
               </TouchableOpacity>
             </View>
-            <View className="w-full mt-3 border">
+
+            <View className=" w-full">
               <TouchableOpacity
                 onPress={handlePresentModalPress}
-                className=" bg-[#FF785B] w-full flex items-center py-3 rounded-t-[50px] pb-8 "
+                className=" bg-[#FF785B]  w-full flex items-center py-3 rounded-t-[30px] pb-8 "
               >
                 <Text className="text-white text-lg font-semibold	">
                   Sign Up
                 </Text>
               </TouchableOpacity>
-
-              <View
+              <BottomSheetModal
+                ref={bottomSheetModalRef}
+                index={0}
+                snapPoints={["85%"]}
                 style={{
-                  justifyContent: "center",
-                  alignItems: "center",
+                  borderRadius: 10,
                 }}
               >
-                <BottomSheetModal
-                  ref={bottomSheetModalRef}
-                  index={0}
-                  snapPoints={["80%"]}
-                  style={{
-                    borderRadius: 30,
-                  }}
-                >
-                  <Signup />
-                </BottomSheetModal>
-              </View>
+                <Signup />
+              </BottomSheetModal>
             </View>
           </SafeAreaView>
         </ScrollView>
