@@ -1,12 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-// import { HeartIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import FavouriteIcon from "../../assets/FavouriteIcon";
-// import { useDispatch, useSelector } from "react-redux";
 
-export default function RacipyCardOne({ recipie }) {
-  const [heartColor, setHeartColor] = useState("white");
+export default function RacipyCardOne({ recipe }) {
+  const [heartColor, setHeartColor] = useState("red");
   const toggleHeartColor = () => {
     const newColor = heartColor === "white" ? "red" : "white";
     setHeartColor(newColor);
@@ -23,17 +21,17 @@ export default function RacipyCardOne({ recipie }) {
           height: 200,
           borderRadius: 20,
         }}
-        source={require("../../assets/mbff.webp")}
+        source={{ uri: recipe.image }}
       />
       <TouchableOpacity
         onPress={toggleHeartColor}
         className="absolute py-4 mx-4 top-0 right-0"
       >
-        <FavouriteIcon />
+        <FavouriteIcon filled={heartColor === "red"} />
       </TouchableOpacity>
 
       <View className="absolute bottom-1 w-full justify-between items-center p-2 bg-black/50 rounded-full">
-        <Text className="text-white text-[10px]">{recipie.title}</Text>
+        <Text className="text-white text-[12px]">{recipe.name}</Text>
       </View>
     </TouchableOpacity>
   );
