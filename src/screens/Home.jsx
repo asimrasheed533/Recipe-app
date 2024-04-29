@@ -32,32 +32,29 @@ export default function Home() {
 
   const recipes = [
     {
-      id: 1,
-      title: "beef burger",
+      name: "Shakshuka",
+      image:
+        "https://www.themealdb.com/images/media/meals/g373701551450225.jpg",
     },
     {
-      id: 2,
-      title: "chicken burger",
+      name: "Beef Banh Mi Bowls with Sriracha Mayo",
+      image:
+        "https://www.themealdb.com/images/media/meals/z0ageb1583189517.jpg",
     },
     {
-      id: 3,
-      title: "mutton burger",
+      name: "Chickpea Fajitas",
+      image:
+        "https://www.themealdb.com/images/media/meals/tvtxpq1511464705.jpg",
     },
     {
-      id: 4,
-      title: "fish burger",
+      name: "Smoky Lentil Chili with Squash",
+      image:
+        "https://www.themealdb.com/images/media/meals/uwxqwy1483389553.jpg",
     },
     {
-      id: 5,
-      title: "vegitables burger",
-    },
-    {
-      id: 6,
-      title: "vegitables burger",
-    },
-    {
-      id: 7,
-      title: "vegitables pizza",
+      name: "Braised Beef Chilli",
+      image:
+        "https://www.themealdb.com/images/media/meals/uuqvwu1504629254.jpg",
     },
   ];
   return (
@@ -124,12 +121,12 @@ export default function Home() {
           <View className="space-y-3">
             <Text className="font-bold text-neutral-700 text-2xl">Recipes</Text>
           </View>
-          <View className="px-4 mt-3 mb-16">
+          <View className=" mt-3 mb-16">
             <FlatList
               scrollEnabled={false}
               data={recipes}
-              renderItem={({ item }) => <RecipyCardOne recipie={item} />}
-              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => <RecipyCardOne recipe={item} />}
+              keyExtractor={(item) => item.name}
               numColumns={2}
               ListEmptyComponent={() => <Text>no data</Text>}
               ItemSeparatorComponent={() => <View className="h-3" />}
