@@ -14,6 +14,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import RecipeDetail from "../screens/RecipeDetail";
 import FavouriteIcon from "../../assets/FavouriteIcon";
+import { KeyboardAvoidingView, Platform } from "react-native";
 const Stack = createNativeStackNavigator();
 
 function AppNavigation() {
@@ -58,40 +59,44 @@ export default AppNavigation;
 const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          height: 60,
-          paddingTop:20,
-          position: "absolute",
-          borderRadius: 30,
-        
-        },
-      }}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "height" : null}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : -150} // Adjust this offset as needed
     >
-      <Tab.Screen
-        name="Home"
-        component={Home}
-    options={{
-      tabBarLabel:"",
-      headerShown:false,
-      tabBarIcon:({focused, color})=>{
-        return focused? <HomeIcon /> : <HomeIcon filled />
-      }
-    }}
-      />
-      <Tab.Screen
-      name="Favourite"
-        component={Favourite}
-      options={{
-        tabBarLabel:"",
-        headerShown:false,
-        tabBarIcon:({focused, color})=>{
-          return focused? <FavouriteIcon /> : <FavouriteIcon filled />
-        }
-      }}
-      />
-    </Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: {
+            height: 60,
+            paddingTop: 20,
+            borderRadius: 30,
+          },
+        }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarLabel: "",
+            headerShown: false,
+            tabBarIcon: ({ focused, color }) => {
+              return focused ? <HomeIcon /> : <HomeIcon filled />;
+            },
+          }}
+        />
+        <Tab.Screen
+          name="Favourite"
+          component={Favourite}
+          options={{
+            tabBarLabel: "",
+            headerShown: false,
+            tabBarIcon: ({ focused, color }) => {
+              return focused ? <FavouriteIcon /> : <FavouriteIcon filled />;
+            },
+          }}
+        />
+      </Tab.Navigator>
+    </KeyboardAvoidingView>
   );
 }

@@ -88,7 +88,7 @@ export default function Home() {
     <SafeAreaView>
       <StatusBar style="dark" />
       <ScrollView showsVerticalScrollIndicator={false} className="pt-10 mx-4">
-        {/* <View className=" flex-row justify-between items-start">
+        <View className=" flex-row justify-between items-start">
           <Image
             source={require("../../assets/images/avatar.png")}
             style={{ height: hp("5"), width: wp("10") }}
@@ -96,7 +96,7 @@ export default function Home() {
           <View className="bg-slate-100 ">
             <NotificationIcon />
           </View>
-        </View> */}
+        </View>
         <View>
           <Text className="font-medium text-sm text-neutral-700 mt-2">
             Hello Arslan26!
@@ -114,7 +114,7 @@ export default function Home() {
           <TextInput
             placeholder="Search recipe"
             placeholderTextColor="gray"
-            className="flex-1 text-xs tracking-wider py-2"
+            className="flex-1 text-xs tracking-wider py-1"
           />
           <TouchableOpacity className="bg-white rounded-full p-2">
             <SearchIcon />
