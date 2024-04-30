@@ -20,14 +20,41 @@ import SearchIcon from "../../assets/SearchIcon";
 
 export default function Home() {
   const Categories = [
-    "beaf",
-    "chicken",
-    "mutton",
-    "fish",
-    "vegitables",
-    "burger",
-    "burger",
-    "burger",
+    {
+      name: "Shakshuka",
+      image:
+        "https://www.themealdb.com/images/media/meals/g373701551450225.jpg",
+    },
+    {
+      name: "Beef ",
+      image:
+        "https://www.themealdb.com/images/media/meals/z0ageb1583189517.jpg",
+    },
+    {
+      name: "Chickpea Fajitas",
+      image:
+        "https://www.themealdb.com/images/media/meals/tvtxpq1511464705.jpg",
+    },
+    {
+      name: "Smoky",
+      image:
+        "https://www.themealdb.com/images/media/meals/uwxqwy1483389553.jpg",
+    },
+    {
+      name: "Beef Chilli",
+      image:
+        "https://www.themealdb.com/images/media/meals/uuqvwu1504629254.jpg",
+    },
+    {
+      name: "Beef Chilli",
+      image:
+        "https://www.themealdb.com/images/media/meals/uuqvwu1504629254.jpg",
+    },
+    {
+      name: "Beef Chilli",
+      image:
+        "https://www.themealdb.com/images/media/meals/uuqvwu1504629254.jpg",
+    },
   ];
 
   const recipes = [
@@ -61,7 +88,7 @@ export default function Home() {
     <SafeAreaView>
       <StatusBar style="dark" />
       <ScrollView showsVerticalScrollIndicator={false} className="pt-10 mx-4">
-        <View className=" flex-row justify-between items-start">
+        {/* <View className=" flex-row justify-between items-start">
           <Image
             source={require("../../assets/images/avatar.png")}
             style={{ height: hp("5"), width: wp("10") }}
@@ -69,7 +96,7 @@ export default function Home() {
           <View className="bg-slate-100 ">
             <NotificationIcon />
           </View>
-        </View>
+        </View> */}
         <View>
           <Text className="font-medium text-sm text-neutral-700 mt-2">
             Hello Arslan26!
@@ -107,11 +134,11 @@ export default function Home() {
               <View className="rounded-full">
                 <Image
                   className="rounded-full h-12 w-12"
-                  source={require("../../assets/images/avatar.png")}
+                  source={{ uri: category.image }}
                 />
               </View>
               <Text className="text-center text-neutral-500 text-[10px]">
-                {category}
+                {category.name}
               </Text>
             </TouchableOpacity>
           ))}
