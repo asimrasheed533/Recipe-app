@@ -55,98 +55,89 @@ export default function Login() {
   }
 
   return (
-    <GestureHandlerRootView className=" flex-1 bg-slate-300 relative">
+    <GestureHandlerRootView className=" flex-1 px-4 bg-slate-300 relative">
       <BottomSheetModalProvider>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          className="border mx-5 rounded-2xl "
-        >
-          <StatusBar style="dark" />
-          <SafeAreaView>
-            <View className="w-full items-center mt-12">
-              <Image source={require("../../assets/logorecipy.png")} />
-            </View>
-            <Text className=" mt-10 text-xs mx-4 ">Enter Name</Text>
-            <View className=" mt-1 mx-3 flex-row items-center rounded-full  bg-white ">
-              <TextInput
-                maxLength={50}
-                onChangeText={(text) => {
-                  if (!text) {
-                    setNameError("Enter the Name");
-                  } else {
-                    setNameError(null);
-                  }
-                  setName(text);
-                }}
-                autoCapitalize="none"
-                className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
-                placeholder="Full Name"
-              />
-              {nameError !== "" ? (
-                <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
-                  {nameError}
-                </Text>
-              ) : null}
-            </View>
-            <Text className=" mt-4 mx-4 text-xs ">Enter Password</Text>
-            <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
-              <TextInput
-                onChangeText={(text) => {
-                  if (!text) {
-                    setPasswordError("Enter the password");
-                  } else {
-                    setPasswordError(null);
-                  }
-                  setPassword(text);
-                }}
-                autoCapitalize="none"
-                className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
-                placeholder="Password"
-              />
-              {passwordError !== "" ? (
-                <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
-                  {passwordError}
-                </Text>
-              ) : null}
-            </View>
+        <StatusBar style="dark" />
+        <SafeAreaView className=" flex-1 relative">
+          <View className="w-full items-center mt-12">
+            <Image source={require("../../assets/logorecipy.png")} />
+          </View>
+          <Text className=" mt-10 text-xs mx-4 ">Enter Name</Text>
+          <View className=" mt-1 mx-3 flex-row items-center rounded-full  bg-white ">
+            <TextInput
+              maxLength={50}
+              onChangeText={(text) => {
+                if (!text) {
+                  setNameError("Enter the Name");
+                } else {
+                  setNameError(null);
+                }
+                setName(text);
+              }}
+              autoCapitalize="none"
+              className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
+              placeholder="Full Name"
+            />
+            {nameError !== "" ? (
+              <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
+                {nameError}
+              </Text>
+            ) : null}
+          </View>
+          <Text className=" mt-4 mx-4 text-xs ">Enter Password</Text>
+          <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
+            <TextInput
+              onChangeText={(text) => {
+                if (!text) {
+                  setPasswordError("Enter the password");
+                } else {
+                  setPasswordError(null);
+                }
+                setPassword(text);
+              }}
+              autoCapitalize="none"
+              className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
+              placeholder="Password"
+            />
+            {passwordError !== "" ? (
+              <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
+                {passwordError}
+              </Text>
+            ) : null}
+          </View>
 
-            <View className="px-12 ">
-              <TouchableOpacity
-                // onPress={handelSubmit}
-                onPress={() => navigation.navigate("Tabs")}
-                style={{
-                  backgroundColor: "#FF785B",
-                }}
-                className="w-full mt-10 items-center py-4 rounded-full"
-              >
-                <Text className="text-white text-sm font-semibold	">
-                  Sign In
-                </Text>
-              </TouchableOpacity>
-            </View>
+          <View className="px-12 ">
+            <TouchableOpacity
+              // onPress={handelSubmit}
+              onPress={() => navigation.navigate("Tabs")}
+              style={{
+                backgroundColor: "#FF785B",
+              }}
+              className="w-full mt-10 items-center py-4 rounded-full"
+            >
+              <Text className="text-white text-sm font-semibold	">Sign In</Text>
+            </TouchableOpacity>
+          </View>
 
-            <View className=" w-full">
-              <TouchableOpacity
-                onPress={handlePresentModalPress}
-                className=" bg-[#FF785B]  w-full flex items-center py-3 rounded-t-[30px] pb-8 "
-              >
-                <Text className="text-white text-lg font-semibold	">
-                  Sign Up
-                </Text>
-              </TouchableOpacity>
-              <BottomSheetModal
-                ref={bottomSheetModalRef}
-                index={0}
-                snapPoints={["85%"]}
-                style={{
-                  borderRadius: 10,
-                }}
-              >
-                <Signup />
-              </BottomSheetModal>
-            </View>
-          </SafeAreaView>
-        </ScrollView>
+          <View className=" w-full absolute bottom-0">
+            <TouchableOpacity
+              onPress={handlePresentModalPress}
+              className=" bg-[#FF785B]  w-full flex items-center py-3 rounded-t-[30px] pb-8 "
+            >
+              <Text className="text-white text-lg font-semibold	">Sign Up</Text>
+            </TouchableOpacity>
+            <BottomSheetModal
+              ref={bottomSheetModalRef}
+              index={0}
+              snapPoints={["85%"]}
+              style={{
+                borderRadius: 10,
+              }}
+            >
+              <Signup />
+            </BottomSheetModal>
+          </View>
+        </SafeAreaView>
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );
