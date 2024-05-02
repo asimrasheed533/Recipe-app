@@ -28,7 +28,7 @@ router.get("/:id", async (req, res) => {
     console.log(err);
   }
 });
-router.post("/addproduct", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
     const imagePath =  uploadImage(req.body.img, req.body.name);
     const category = new Category({

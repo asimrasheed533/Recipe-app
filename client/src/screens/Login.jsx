@@ -5,8 +5,6 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Button,
-  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Signup from "./SignUp";
@@ -29,7 +27,6 @@ export default function Login() {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [processing, setProcessing] = useState(false);
 
   const bottomSheetModalRef = useRef(null);
   const handlePresentModalPress = () => {

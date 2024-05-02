@@ -1,5 +1,5 @@
 const express = require("express");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
@@ -31,7 +31,7 @@ router.get("/:id", async(req, res) => {
 
 router.post("/login", async(req,res)=>{
     try{
-      const user = await  User.fongone({email: req.body.email});
+      const user = await  User.findOne({email: req.body.email});
       const {email , password} = req.body;
 
       if(!email || !password){
