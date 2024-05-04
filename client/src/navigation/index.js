@@ -59,44 +59,39 @@ export default AppNavigation;
 const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "height" : null}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : -150} // Adjust this offset as needed
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          height: 60,
+          paddingTop: 20,
+          borderRadius: 30,
+        },
+        tabBarHideOnKeyboard: true,
+      }}
     >
-      <Tab.Navigator
-        screenOptions={{
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarLabel: "",
           headerShown: false,
-          tabBarStyle: {
-            height: 60,
-            paddingTop: 20,
-            borderRadius: 30,
+          tabBarIcon: ({ focused, color }) => {
+            return focused ? <HomeIcon /> : <HomeIcon filled />;
           },
         }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{
-            tabBarLabel: "",
-            headerShown: false,
-            tabBarIcon: ({ focused, color }) => {
-              return focused ? <HomeIcon /> : <HomeIcon filled />;
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Favourite"
-          component={Favourite}
-          options={{
-            tabBarLabel: "",
-            headerShown: false,
-            tabBarIcon: ({ focused, color }) => {
-              return focused ? <FavouriteIcon /> : <FavouriteIcon filled />;
-            },
-          }}
-        />
-      </Tab.Navigator>
-    </KeyboardAvoidingView>
+      />
+      <Tab.Screen
+        name="Favourite"
+        component={Favourite}
+        options={{
+          tabBarLabel: "",
+          headerShown: false,
+          tabBarIcon: ({ focused, color }) => {
+            return focused ? <FavouriteIcon /> : <FavouriteIcon filled />;
+          },
+        }}
+      />
+    </Tab.Navigator>
   );
 }
