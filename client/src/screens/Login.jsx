@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from "../utils/axios";
 import Signup from "./SignUp";
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState } from "react";
@@ -34,10 +35,9 @@ export default function Login() {
   };
   const navigation = useNavigation();
 
-  function handelSubmit(e) {
-    e.preventDefault();
-    if (!name) {
-      setNameError("Enter name");
+  function handelSubmit() {
+    if (!emailError) {
+      setNameError("Enter eamil");
     }
     if (!password) {
       setPasswordError("Enter password");
@@ -49,6 +49,21 @@ export default function Login() {
       setName("");
       setPassword("");
     }
+
+    if (!emailError && !passwordError) {
+      axios
+        .post("/users/login", {
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          navigation.navigate("Tabs");
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.error("An error occurred during login:", error);
+        });
+    }
   }
 
   return (
@@ -59,25 +74,25 @@ export default function Login() {
           <View className="w-full items-center mt-12">
             <Image source={require("../../assets/logorecipy.png")} />
           </View>
-          <Text className=" mt-10 text-xs mx-4 ">Enter Name</Text>
+          <Text className=" mt-10 text-xs mx-4 ">Enter Email</Text>
           <View className=" mt-1 mx-3 flex-row items-center rounded-full  bg-white ">
             <TextInput
               maxLength={50}
               onChangeText={(text) => {
                 if (!text) {
-                  setNameError("Enter the Name");
+                  setEmailError("Enter the email");
                 } else {
-                  setNameError(null);
+                  setEmailError(null);
                 }
-                setName(text);
+                setEmail(text);
               }}
               autoCapitalize="none"
               className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
               placeholder="Full Name"
             />
-            {nameError !== "" ? (
+            {emailError !== "" ? (
               <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
-                {nameError}
+                {emailError}
               </Text>
             ) : null}
           </View>
@@ -105,8 +120,8 @@ export default function Login() {
 
           <View className="px-12 ">
             <TouchableOpacity
-              // onPress={handelSubmit}
-              onPress={() => navigation.navigate("Tabs")}
+              onPress={handelSubmit}
+              // onPress={() => navigation.navigate("Tabs")}
               style={{
                 backgroundColor: "#FF785B",
               }}
