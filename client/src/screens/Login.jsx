@@ -64,6 +64,8 @@ export default function Login() {
           console.error("An error occurred during login:", error);
         });
     }
+    
+    console.log(email, password)
   }
 
   return (
