@@ -63,9 +63,13 @@ function Tabs() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
+          position: "absolute",
+          marginBottom: 20,
+          borderRadius: 20,
           height: 60,
-          paddingTop: 20,
-          borderRadius: 30,
+          paddingTop: 25,
+          marginHorizontal: 10,
+          backgroundColor: "#FF785B",
         },
         tabBarHideOnKeyboard: true,
       }}
