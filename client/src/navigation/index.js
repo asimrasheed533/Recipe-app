@@ -16,6 +16,8 @@ import RecipeDetail from "../screens/RecipeDetail";
 import FavouriteIcon from "../../assets/FavouriteIcon";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { KeyboardAvoidingView, Platform } from "react-native";
+import Profile from "../screens/Profile";
+import ContactUs from "../screens/ContactUs";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,6 +33,10 @@ function AppNavigation() {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Tabs" component={Tabs} />
+        <Stack.Screen name="Profile" component={Profile}/>
+        <Stack.Screen name="Favourite" component={Favourite} />
+        <Stack.Screen name="ContactUs" component={ContactUs} />
+        
         <Stack.Screen
           name="RecipeDetail"
           component={RecipeDetail}
@@ -85,6 +91,7 @@ function Tabs() {
           },
         }}
       />
+      <Tab.Screen name="Home" component={Home} />
       <Tab.Screen
         name="Favourite"
         component={Favourite}
@@ -96,6 +103,7 @@ function Tabs() {
           },
         }}
       />
+  
     </Tab.Navigator>
   );
 }
@@ -103,7 +111,9 @@ function Tabs() {
 function HomeDrawer() {
   return (
     <Drawer.Navigator screenOptions={{headerShown:false}}>
-      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Home" component={Home} /> 
+      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="ContactUs" component={ContactUs} />
     </Drawer.Navigator>
   );
 }
