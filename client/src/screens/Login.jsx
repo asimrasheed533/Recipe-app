@@ -60,7 +60,7 @@ export default function Login() {
         })
         .then((res) => {
           navigation.navigate("Tabs");
-          console.log(res.data);
+          console.log(res.data)
         })
         .catch((error) => {
           console.error("An error occurred during login:", error);

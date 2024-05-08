@@ -12,6 +12,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { useNavigation } from "@react-navigation/native";
+import axios from "../utils/axios";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -43,6 +44,25 @@ export default function SignUp() {
 
     if (name && email && email.includes("@") && password && ConfirmPassword) {
       setProcessing(true);
+    }
+
+    if(!emailError && !passwordError && !ConfirmPasswordError && !nameError){
+      axios
+      .post("/users/register", {
+        name: name,
+        email: email,
+        password: password,
+      }, {
+        timeout: 10000 // Example: 10 seconds timeout
+      })
+      .then((res)=>{
+        navigation.navigate("Tabs")
+        console.log(res.data)
+      }) 
+      .catch((error)=>{
+        console.log("An error occurred during Register",error)
+      })
+      console.log("User register successfully", email, name, password, ConfirmPassword)
     }
   }
 
