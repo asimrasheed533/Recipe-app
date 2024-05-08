@@ -11,6 +11,7 @@ import {
   StyleSheet,
   SafeAreaView,
 } from "react-native";
+import BackIcon from "../../assets/BackIcon";
 
 const ContactUs = () => {
   const navigation = useNavigation();
@@ -34,17 +35,14 @@ const ContactUs = () => {
         }}
       >
         <View style={{left: 10, top: 3}}>
-          <ImageBackground
-             source={require("../../assets/images/avatar.png")}
-            style={{height: 35, width: 35, justifyContent: "center"}}
+        
+           <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            className="p-2 rounded-full h-8 w-8 bg-white"
           >
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Image
-                 source={require("../../assets/images/avatar.png")}
-                style={{height: 15, width: 15, alignSelf: "center"}}
-              />
-            </TouchableOpacity>
-          </ImageBackground>
+            <BackIcon />
+          </TouchableOpacity>
+      
         </View>
 
         <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
