@@ -14,8 +14,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import RecipeDetail from "../screens/RecipeDetail";
 import FavouriteIcon from "../../assets/FavouriteIcon";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { KeyboardAvoidingView, Platform } from "react-native";
+
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 function AppNavigation() {
   return (
@@ -32,7 +36,6 @@ function AppNavigation() {
           component={RecipeDetail}
           options={{
             presentation: "fullScreenModal",
-
             headerTitleStyle: {
               color: "#FF785B",
               fontSize: 20,
@@ -54,9 +57,6 @@ function AppNavigation() {
   );
 }
 
-export default AppNavigation;
-
-const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
     <Tab.Navigator
@@ -75,8 +75,8 @@ function Tabs() {
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeDrawer"
+        component={HomeDrawer}
         options={{
           tabBarLabel: "",
           headerShown: false,
@@ -99,3 +99,13 @@ function Tabs() {
     </Tab.Navigator>
   );
 }
+
+function HomeDrawer() {
+  return (
+    <Drawer.Navigator screenOptions={{headerShown:false}}>
+      <Drawer.Screen name="Home" component={Home} />
+    </Drawer.Navigator>
+  );
+}
+
+export default AppNavigation;

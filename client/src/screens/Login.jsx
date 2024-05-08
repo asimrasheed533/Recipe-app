@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import axios from "../utils/axios";
 import Signup from "./SignUp";
 import { StatusBar } from "expo-status-bar";
 import React, { useRef, useState } from "react";
@@ -35,38 +34,38 @@ export default function Login() {
   };
   const navigation = useNavigation();
 
-  function handelSubmit() {
-    if (!emailError) {
-      setNameError("Enter eamil");
-    }
-    if (!password) {
-      setPasswordError("Enter password");
-    }
+  // function handelSubmit() {
+  //   if (!emailError) {
+  //     setNameError("Enter eamil");
+  //   }
+  //   if (!password) {
+  //     setPasswordError("Enter password");
+  //   }
 
-    if (name && password) {
-      setNameError(null);
-      setPasswordError(null);
-      setName("");
-      setPassword("");
-    }
+  //   if (name && password) {
+  //     setNameError(null);
+  //     setPasswordError(null);
+  //     setName("");
+  //     setPassword("");
+  //   }
 
-    if (!emailError && !passwordError) {
-      axios
-        .post("/users/login", {
-          email: email,
-          password: password,
-        })
-        .then((res) => {
-          navigation.navigate("Tabs");
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.error("An error occurred during login:", error);
-        });
-    }
+  //   if (!emailError && !passwordError) {
+  //     axios
+  //       .post("/users/login", {
+  //         email: email,
+  //         password: password,
+  //       })
+  //       .then((res) => {
+  //         navigation.navigate("Tabs");
+  //         console.log(res.data);
+  //       })
+  //       .catch((error) => {
+  //         console.error("An error occurred during login:", error);
+  //       });
+  //   }
     
-    console.log(email, password)
-  }
+  //   console.log(email, password)
+  // }
 
   return (
     <GestureHandlerRootView className=" flex-1 px-4 bg-slate-300 relative">
@@ -122,8 +121,8 @@ export default function Login() {
 
           <View className="px-12 ">
             <TouchableOpacity
-              onPress={handelSubmit}
-              // onPress={() => navigation.navigate("Tabs")}
+              // onPress={handelSubmit}
+              onPress={() => navigation.navigate("Tabs")}
               style={{
                 backgroundColor: "#FF785B",
               }}

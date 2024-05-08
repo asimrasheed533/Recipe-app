@@ -17,8 +17,10 @@ import {
 } from "react-native-responsive-screen";
 import NotificationIcon from "../../assets/NotificationIcon";
 import SearchIcon from "../../assets/SearchIcon";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
+  const navigation = useNavigation();
   const Categories = [
     {
       name: "Shakshuka",
@@ -89,10 +91,12 @@ export default function Home() {
       <StatusBar style="dark" />
       <ScrollView showsVerticalScrollIndicator={false} className="pt-10 mx-4">
         <View className=" flex-row justify-between items-start">
+          <TouchableOpacity onPress={()=>navigation.openDrawer()}>
           <Image
             source={require("../../assets/images/avatar.png")}
             style={{ height: hp("5"), width: wp("10") }}
           />
+          </TouchableOpacity>
           <View className="bg-slate-100 ">
             <NotificationIcon />
           </View>
