@@ -19,6 +19,7 @@ import {
   GestureHandlerRootView,
   PanGestureHandler,
 } from "react-native-gesture-handler";
+import axios from "../utils/axios";
 
 export default function Login() {
   const [name, setName] = useState("");
@@ -54,6 +55,8 @@ export default function Login() {
         .post("/users/login", {
           email: email,
           password: password,
+        }, {
+          timeout: 10000 // Example: 10 seconds timeout
         })
         .then((res) => {
           navigation.navigate("Tabs");
