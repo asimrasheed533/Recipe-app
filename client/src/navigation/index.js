@@ -18,6 +18,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { KeyboardAvoidingView, Platform } from "react-native";
 import Profile from "../screens/Profile";
 import ContactUs from "../screens/ContactUs";
+import Forgot from "../screens/Forgot";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,6 +37,7 @@ function AppNavigation() {
         <Stack.Screen name="Profile" component={Profile}/>
         <Stack.Screen name="Favourite" component={Favourite} />
         <Stack.Screen name="ContactUs" component={ContactUs} />
+        <Stack.Screen name="Forgot" component={Forgot} />
         
         <Stack.Screen
           name="RecipeDetail"

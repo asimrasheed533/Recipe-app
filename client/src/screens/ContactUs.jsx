@@ -15,15 +15,9 @@ import BackIcon from "../../assets/BackIcon";
 
 const ContactUs = () => {
   const navigation = useNavigation();
-  const [changePassword, setChangePassword] = useState();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   // State variable to track active input field
   const [activeInput, setActiveInput] = useState(null);
-
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: "#FB6D3B"}}>
       {/* Top Section */}

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -56,7 +57,7 @@ export default function SignUp() {
         timeout: 10000 // Example: 10 seconds timeout
       })
       .then((res)=>{
-        navigation.navigate("Tabs")
+        navigation.navigate("Login")
         console.log(res.data)
       }) 
       .catch((error)=>{

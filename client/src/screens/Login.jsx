@@ -52,26 +52,28 @@ export default function Login() {
 
     if (!emailError && !passwordError) {
       axios
-        .post("/users/login", {
-          email: email,
-          password: password,
-        }, {
-          timeout: 10000 // Example: 10 seconds timeout
-        })
+        .post(
+          "/users/login",
+          {
+            email: email,
+            password: password,
+          },
+          {
+            timeout: 10000, // Example: 10 seconds timeout
+          }
+        )
         .then((res) => {
           navigation.navigate("Tabs");
-          console.log(res.data)
+          console.log(res.data);
         })
         .catch((error) => {
           console.error("An error occurred during login:", error);
         });
     }
-    
- 
   }
 
   return (
-    <GestureHandlerRootView className=" flex-1 px-4 bg-slate-300 relative">
+    <GestureHandlerRootView className=" flex-1 px-4 bg-slate-100 relative">
       <BottomSheetModalProvider>
         <StatusBar style="dark" />
         <SafeAreaView className=" flex-1 relative">
@@ -81,6 +83,7 @@ export default function Login() {
           <Text className=" mt-10 text-xs mx-4 ">Enter Email</Text>
           <View className=" mt-1 mx-3 flex-row items-center rounded-full  bg-white ">
             <TextInput
+            keyboardType="email-address"
               maxLength={50}
               onChangeText={(text) => {
                 if (!text) {
@@ -103,6 +106,7 @@ export default function Login() {
           <Text className=" mt-4 mx-4 text-xs ">Enter Password</Text>
           <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
             <TextInput
+            keyboardType="visible-password"
               onChangeText={(text) => {
                 if (!text) {
                   setPasswordError("Enter the password");
@@ -121,11 +125,13 @@ export default function Login() {
               </Text>
             ) : null}
           </View>
+          <View  className=" mt-4 mx-10 items-end"> 
+            <TouchableOpacity onPress={()=>navigation.navigate("Forgot")}><Text>Forgot Password</Text></TouchableOpacity>
+          </View>
 
           <View className="px-12 ">
             <TouchableOpacity
               onPress={handelSubmit}
-              // onPress={() => navigation.navigate("Tabs")}
               style={{
                 backgroundColor: "#FF785B",
               }}
