@@ -19,6 +19,7 @@ import { KeyboardAvoidingView, Platform } from "react-native";
 import Profile from "../screens/Profile";
 import ContactUs from "../screens/ContactUs";
 import Forgot from "../screens/Forgot";
+import OTP from "../screens/OTP";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,6 +39,7 @@ function AppNavigation() {
         <Stack.Screen name="Favourite" component={Favourite} />
         <Stack.Screen name="ContactUs" component={ContactUs} />
         <Stack.Screen name="Forgot" component={Forgot} />
+        <Stack.Screen name="OTP" component={OTP} />
         
         <Stack.Screen
           name="RecipeDetail"
@@ -112,7 +114,10 @@ function Tabs() {
 
 function HomeDrawer() {
   return (
-    <Drawer.Navigator screenOptions={{headerShown:false}}>
+    <Drawer.Navigator screenOptions={{headerShown:false}}
+    
+    
+    >
       <Drawer.Screen name="Home" component={Home} /> 
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="ContactUs" component={ContactUs} />

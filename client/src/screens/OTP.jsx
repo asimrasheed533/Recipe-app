@@ -4,16 +4,16 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
-  TextInput,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
 import React from "react";
+import OTPInputView from "@twotalltotems/react-native-otp-input";
 import BackIcon from "../../assets/BackIcon";
-import ForgotSvg from "../../assets/ForgotSvg";
 import { useNavigation } from "@react-navigation/native";
+import OtpSvg from "../../assets/OtpSvg";
 
-export default function Forgot() {
+export default function OTP() {
   const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
@@ -48,14 +48,14 @@ export default function Forgot() {
                 textAlign: "center",
               }}
             >
-              Forgot
+              OTP Verify
             </Text>
           </View>
         </View>
         {/* //       //bottom screen */}
         <ScrollView
           style={{
-            flex: 1,
+            flex: 1, 
             backgroundColor: "#F7F7F7",
             borderTopRightRadius: 35,
             borderTopLeftRadius: 35,
@@ -63,28 +63,25 @@ export default function Forgot() {
             padding: 20,
           }}
         >
-          <ForgotSvg />
-          <Text className=" mt-4 mx-4 text-xs ">Email Address</Text>
-          <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
-            <TextInput
-              keyboardType="email-address"
-              className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
-              placeholder="Enter email"
+          <OtpSvg />
+          <Text className=" mt-4  text-base font-semibold">Enter Here</Text>
+          <View className="mx-6">
+            <OTPInputView
+            placeholderTextColor="#000"
+              codeInputFieldStyle={{ borderRadius: "9px" }}
+              style={{ width: "100%", height: 80 }}
+              pinCount={4}
             />
-
-            <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
-              Enter the email
-            </Text>
           </View>
+
           <View className="px-12 ">
             <TouchableOpacity
-            onPress={ ()=> navigation.navigate("OTP")}
               style={{
                 backgroundColor: "#FF785B",
               }}
               className="w-full mt-10 items-center py-4 rounded-full"
             >
-              <Text className="text-white text-sm font-semibold	">Send</Text>
+              <Text className="text-white text-sm font-semibold">Send</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

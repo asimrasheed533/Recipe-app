@@ -63,11 +63,17 @@ export default function Login() {
           }
         )
         .then((res) => {
+          setEmail ("");
+          setPassword("");
           navigation.navigate("Tabs");
           console.log(res.data);
         })
         .catch((error) => {
           console.error("An error occurred during login:", error);
+        })
+        .finally(() => {
+        
+          console.log("Request completed.");
         });
     }
   }
@@ -85,7 +91,9 @@ export default function Login() {
             <TextInput
             keyboardType="email-address"
               maxLength={50}
+              value={email}
               onChangeText={(text) => {
+                
                 if (!text) {
                   setEmailError("Enter the email");
                 } else {
@@ -107,6 +115,7 @@ export default function Login() {
           <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
             <TextInput
             keyboardType="visible-password"
+            value={password}
               onChangeText={(text) => {
                 if (!text) {
                   setPasswordError("Enter the password");
