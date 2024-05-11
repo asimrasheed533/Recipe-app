@@ -8,7 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import RecipyCardOne from "../components/RacipyCardOne";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -18,8 +18,22 @@ import {
 import NotificationIcon from "../../assets/NotificationIcon";
 import SearchIcon from "../../assets/SearchIcon";
 import { useNavigation } from "@react-navigation/native";
+import axios from "../utils/axios";
 
 export default function Home() {
+const [categories, setCategories] = useState([]);
+const [products, setProducts] = useState([]);
+  useEffect(() => {
+    axios.get("/categories/").then((res) => {
+      console.log(res.data);
+      setCategories(res.data);
+    });
+    axios.get("/products/").then((res) => {
+      console.log(res.data);
+      setProducts(res.data);
+    });
+  }, [])
+
   const navigation = useNavigation();
   const Categories = [
     {
@@ -58,6 +72,7 @@ export default function Home() {
         "https://www.themealdb.com/images/media/meals/uuqvwu1504629254.jpg",
     },
   ];
+
 
   const recipes = [
     {
@@ -130,7 +145,7 @@ export default function Home() {
           showsHorizontalScrollIndicator={false}
           className="my-8 space-x-4"
         >
-          {Categories.map((category, index) => (
+          {categories.map((category, index) => (
             <TouchableOpacity
               key={index}
               className="flex items-center space-y-1"
@@ -138,7 +153,7 @@ export default function Home() {
               <View className="rounded-full">
                 <Image
                   className="rounded-full h-12 w-12"
-                  source={{ uri: category.image }}
+                  source={{ uri: category.img }}
                 />
               </View>
               <Text className="text-center text-neutral-500 text-[10px]">
@@ -155,7 +170,7 @@ export default function Home() {
           <View className=" mt-3 mb-16">
             <FlatList
               scrollEnabled={false}
-              data={recipes}
+              data={products}
               renderItem={({ item }) => <RecipyCardOne recipe={item} />}
               keyExtractor={(item) => item.name}
               numColumns={2}
