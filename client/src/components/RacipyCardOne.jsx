@@ -21,7 +21,7 @@ export default function RacipyCardOne({ recipe }) {
           height: 200,
           borderRadius: 20,
         }}
-        source={{ uri: recipe.image }}
+        source={{ uri: recipe.img }}
       />
       <TouchableOpacity
         onPress={toggleHeartColor}
