@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const mailer = require("../utils/mailer");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-
+const auth = require("../middleware/auth");
 const generateOTP = () => {
   return Math.floor(1000 + Math.random() * 9000);
 };
@@ -48,18 +48,26 @@ router.post("/login", async (req, res) => {
 
       if (!isMatch) {
         res.status(400).json({ error: "Invalid credentials" });
-      } else {
-        //jwt token
-        const token = jwt.sign(
-          { user_id: user._id, email },
-          process.env.TOKEN_KEY
-        );
-        user.token = token;
-        console.log(token);
-        res
-          .status(200)
-          .json({ message: "Login successful", user: user });
       }
+      //jwt token
+      const token = jwt.sign(
+        { user_id: user._id, email },
+        process.env.TOKEN_KEY,
+        { expiresIn: "2h" }
+      );
+      // user.token = token;
+      // console.log(token);
+      // res.status(200).json({ message: "Login successful", user: user });
+      const responseObject = {
+        message: "Login successful",
+        user: {
+          ...user.toObject(), // Convert the Mongoose document to a plain JavaScript object
+          token: token,
+        },
+      };
+
+      // Send the response
+      res.status(200).json(responseObject);
     } else {
       res.status(400).json({ error: "invalid credentials" });
     }
@@ -122,6 +130,14 @@ router.delete("/:id", async (req, res) => {
   try {
     const deleteUser = await User.findByIdAndDelete(req.params.id);
     res.send(deleteUser);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post("/verify", auth, async (req, res) => {
+  try {
+    res.send("User verified");
   } catch (err) {
     console.log(err);
   }
