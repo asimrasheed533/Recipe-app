@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Alert,
+  Pressable,
 } from "react-native";
 import React, { useState } from "react";
 import BackIcon from "../../assets/BackIcon";
@@ -15,14 +16,19 @@ import ForgotSvg from "../../assets/ForgotSvg";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 export default function Forgot() {
-  const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false); 
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const handleConfirmPress = async () => {
     setLoading(true);
+    console.log(handleConfirmPress)
+
     try {
-      const response = await axios.post("http://192.168.100.175:9000/api/users/forgot", { email });
-  
+      const response = await axios.post(
+        "http://192.168.100.175:9000/api/users/forgot",
+        { email }
+      );
+
       if (response.status === 200) {
         navigation.navigate("OTP");
       } else {
@@ -37,8 +43,6 @@ export default function Forgot() {
       setLoading(false);
     }
   };
-  
-
 
   return (
     <KeyboardAvoidingView
@@ -92,8 +96,8 @@ export default function Forgot() {
           <Text className=" mt-4 mx-4 text-xs ">Email Address</Text>
           <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
             <TextInput
-            value={setEmail}
-            onChangeText={(text)=> setEmail(text)}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
               keyboardType="email-address"
               className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
               placeholder="Enter email"
@@ -104,13 +108,17 @@ export default function Forgot() {
             </Text>
           </View>
           <View className="px-12 ">
-            <TouchableOpacity
+            {/* <TouchableOpacity
             // onPress={ ()=> navigation.navigate("OTP")}
             onPress={handleConfirmPress}
-              style={{
-                backgroundColor: "#FF785B",
-              }}
-              className="w-full mt-10 items-center py-4 rounded-full"
+              disabled={loading}
+              className="w-full mt-10 items-center py-4 rounded-full bg-slate-600"
+            >
+              <Text className="text-white text-sm font-semibold	">Send</Text>
+            </TouchableOpacity> */}
+            <TouchableOpacity
+               onPress={handleConfirmPress}
+              className="w-full mt-10 items-center py-4 rounded-full bg-slate-600"
             >
               <Text className="text-white text-sm font-semibold	">Send</Text>
             </TouchableOpacity>
