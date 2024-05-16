@@ -5,11 +5,13 @@ const userRouter = require("./router/userRouter");
 const category = require("./router/categories");
 const product = require("./router/Products");
 const dotenv = require("dotenv");
+const morgan = require("morgan");
+
 dotenv.config();
 
 // api config
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 9000;
 
 //middleware
 app.use(express.json());
@@ -27,6 +29,9 @@ app.get("/", (req, res) => {
 app.use("/api/users", userRouter);
 app.use("/api/categories", category);
 app.use("/api/products", product);
+
+  //use morgen
+app.use(morgan("dev"));
 
 // listener
 app.listen(port, () =>

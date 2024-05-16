@@ -25,11 +25,11 @@ const [categories, setCategories] = useState([]);
 const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get("/categories/").then((res) => {
-      console.log(res.data);
+      
       setCategories(res.data);
     });
     axios.get("/products/").then((res) => {
-      console.log(res.data);
+   
       setProducts(res.data);
     });
   }, [])

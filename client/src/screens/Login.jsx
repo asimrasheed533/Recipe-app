@@ -140,8 +140,7 @@ export default function Login() {
 
           <View className="px-12 ">
             <TouchableOpacity
-              // onPress={handelSubmit}
-              onPress={() => navigation.navigate("Tabs")}
+              onPress={handelSubmit}
               style={{
                 backgroundColor: "#FF785B",
               }}
