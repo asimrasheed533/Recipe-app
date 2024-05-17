@@ -11,6 +11,7 @@ const schema = new mongoose.Schema({
   description: String,
   isFeatured: Boolean,
   isActive: Boolean,
+  ingeredients: Array,
 });
 
 const Product = mongoose.model("Products", schema);

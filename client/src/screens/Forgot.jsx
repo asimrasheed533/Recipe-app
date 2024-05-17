@@ -9,6 +9,7 @@ import {
   Platform,
   Alert,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import BackIcon from "../../assets/BackIcon";
@@ -21,24 +22,18 @@ export default function Forgot() {
   const navigation = useNavigation();
   const handleConfirmPress = async () => {
     setLoading(true);
-    console.log(handleConfirmPress)
-
     try {
       const response = await axios.post(
         "http://192.168.100.175:9000/api/users/forgot",
-        { email }
+        { email },
+      // time out
+      {  timeout: 10000 }
+        
       );
-
-      if (response.status === 200) {
-        navigation.navigate("OTP");
-      } else {
-        // Here, response.data will be the string "OTP sent successfully" if status is 200
-        // So, you can just show a success message here
-        Alert.alert("Success", response.data);
-      }
+      console.log("Response:", response.data);
     } catch (error) {
       console.error("Error sending OTP:", error);
-      Alert.alert("Error", "Failed to send OTP");
+      alert("Error", "Failed to send OTP");
     } finally {
       setLoading(false);
     }
@@ -108,19 +103,15 @@ export default function Forgot() {
             </Text>
           </View>
           <View className="px-12 ">
-            {/* <TouchableOpacity
-            // onPress={ ()=> navigation.navigate("OTP")}
-            onPress={handleConfirmPress}
-              disabled={loading}
-              className="w-full mt-10 items-center py-4 rounded-full bg-slate-600"
-            >
-              <Text className="text-white text-sm font-semibold	">Send</Text>
-            </TouchableOpacity> */}
             <TouchableOpacity
-               onPress={handleConfirmPress}
+              onPress={handleConfirmPress}
               className="w-full mt-10 items-center py-4 rounded-full bg-slate-600"
             >
-              <Text className="text-white text-sm font-semibold	">Send</Text>
+              {loading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text className="text-white text-sm font-semibold	">Send</Text>
+              )}
             </TouchableOpacity>
           </View>
         </ScrollView>

@@ -6,12 +6,9 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
 import { useNavigation } from "@react-navigation/native";
 import axios from "../utils/axios";
 
@@ -45,9 +42,6 @@ export default function SignUp() {
 
     if (name && email && email.includes("@") && password && ConfirmPassword) {
       setProcessing(true);
-    }
-
-    if(!emailError && !passwordError && !ConfirmPasswordError && !nameError){
       axios
       .post("/users/register", {
         name: name,
@@ -62,9 +56,36 @@ export default function SignUp() {
       }) 
       .catch((error)=>{
         console.log("An error occurred during Register",error)
+        alert("Already Register",error)
+      }).finally(()=>{
+        setProcessing(false);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
       })
       console.log("User register successfully", email, name, password, ConfirmPassword)
     }
+
+    // if(!emailError && !passwordError && !ConfirmPasswordError && !nameError){
+    //   // axios
+    //   // .post("/users/register", {
+    //   //   name: name,
+    //   //   email: email,
+    //   //   password: password,
+    //   // }, {
+    //   //   timeout: 10000 // Example: 10 seconds timeout
+    //   // })
+    //   // .then((res)=>{
+    //   //   navigation.navigate("Login")
+    //   //   console.log(res.data)
+    //   // }) 
+    //   // .catch((error)=>{
+    //   //   console.log("An error occurred during Register",error)
+    //   // })
+    //   // console.log("User register successfully", email, name, password, ConfirmPassword)
+    //   console.log("User register successfully", email, name, password, ConfirmPassword)
+    // }
   }
 
   return (
