@@ -19,20 +19,19 @@ import NotificationIcon from "../../assets/NotificationIcon";
 import SearchIcon from "../../assets/SearchIcon";
 import { useNavigation } from "@react-navigation/native";
 import axios from "../utils/axios";
-
+import { useUser } from "../context/UserContext";
 export default function Home() {
-const [categories, setCategories] = useState([]);
-const [products, setProducts] = useState([]);
+  const { user } = useUser();
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get("/categories/").then((res) => {
-      
       setCategories(res.data);
     });
     axios.get("/products/").then((res) => {
-   
       setProducts(res.data);
     });
-  }, [])
+  }, []);
 
   const navigation = useNavigation();
   const Categories = [
@@ -73,7 +72,6 @@ const [products, setProducts] = useState([]);
     },
   ];
 
-
   const recipes = [
     {
       name: "Shakshuka",
@@ -106,11 +104,11 @@ const [products, setProducts] = useState([]);
       <StatusBar style="dark" />
       <ScrollView showsVerticalScrollIndicator={false} className="pt-10 mx-4">
         <View className=" flex-row justify-between items-start">
-          <TouchableOpacity onPress={()=>navigation.openDrawer()}>
-          <Image
-            source={require("../../assets/images/avatar.png")}
-            style={{ height: hp("5"), width: wp("10") }}
-          />
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <Image
+              source={require("../../assets/images/avatar.png")}
+              style={{ height: hp("5"), width: wp("10") }}
+            />
           </TouchableOpacity>
           <View className="bg-slate-100 ">
             <NotificationIcon />
@@ -118,7 +116,7 @@ const [products, setProducts] = useState([]);
         </View>
         <View>
           <Text className="font-medium text-sm text-neutral-700 mt-2">
-            Hello Arslan26!
+            Hello {user.name}
           </Text>
           <View className="mt-3">
             <Text className="font-semibold text-neutral-600 text-xl">

@@ -20,6 +20,7 @@ import {
   PanGestureHandler,
 } from "react-native-gesture-handler";
 import axios from "../utils/axios";
+import { useUser } from "../context/UserContext";
 
 export default function Login() {
   const [name, setName] = useState("");
@@ -28,7 +29,7 @@ export default function Login() {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
+  const { setUser } = useUser();
   const bottomSheetModalRef = useRef(null);
   const handlePresentModalPress = () => {
     bottomSheetModalRef.current?.present();
@@ -63,8 +64,9 @@ export default function Login() {
           }
         )
         .then((res) => {
-          setEmail ("");
+          setEmail("");
           setPassword("");
+          setUser(res.data.user);
           navigation.navigate("Tabs");
           console.log(res.data);
         })
@@ -72,7 +74,6 @@ export default function Login() {
           console.error("An error occurred during login:", error);
         })
         .finally(() => {
-        
           console.log("Request completed.");
         });
     }
@@ -89,11 +90,10 @@ export default function Login() {
           <Text className=" mt-10 text-xs mx-4 ">Enter Email</Text>
           <View className=" mt-1 mx-3 flex-row items-center rounded-full  bg-white ">
             <TextInput
-            keyboardType="email-address"
+              keyboardType="email-address"
               maxLength={50}
               value={email}
               onChangeText={(text) => {
-                
                 if (!text) {
                   setEmailError("Enter the email");
                 } else {
@@ -114,8 +114,8 @@ export default function Login() {
           <Text className=" mt-4 mx-4 text-xs ">Enter Password</Text>
           <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
             <TextInput
-            keyboardType="visible-password"
-            value={password}
+              keyboardType="visible-password"
+              value={password}
               onChangeText={(text) => {
                 if (!text) {
                   setPasswordError("Enter the password");
@@ -134,8 +134,10 @@ export default function Login() {
               </Text>
             ) : null}
           </View>
-          <View  className=" mt-4 mx-10 items-end"> 
-            <TouchableOpacity onPress={()=>navigation.navigate("Forgot")}><Text>Forgot Password</Text></TouchableOpacity>
+          <View className=" mt-4 mx-10 items-end">
+            <TouchableOpacity onPress={() => navigation.navigate("Forgot")}>
+              <Text>Forgot Password</Text>
+            </TouchableOpacity>
           </View>
 
           <View className="px-12 ">

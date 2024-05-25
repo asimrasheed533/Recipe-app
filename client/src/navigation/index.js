@@ -1,5 +1,5 @@
-import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { ActivityIndicator, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   widthPercentageToDP as wp,
@@ -15,17 +15,21 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RecipeDetail from "../screens/RecipeDetail";
 import FavouriteIcon from "../../assets/FavouriteIcon";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { KeyboardAvoidingView, Platform } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Profile from "../screens/Profile";
 import ContactUs from "../screens/ContactUs";
 import Forgot from "../screens/Forgot";
 import OTP from "../screens/OTP";
+import { useEffect, useState } from "react";
+import { useUser } from "../context/UserContext";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 function AppNavigation() {
+  const { user } = useUser();
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -33,14 +37,14 @@ function AppNavigation() {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={user ? Tabs : Login} />
         <Stack.Screen name="Tabs" component={Tabs} />
-        <Stack.Screen name="Profile" component={Profile}/>
+        <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Favourite" component={Favourite} />
         <Stack.Screen name="ContactUs" component={ContactUs} />
         <Stack.Screen name="Forgot" component={Forgot} />
         <Stack.Screen name="OTP" component={OTP} />
-        
+
         <Stack.Screen
           name="RecipeDetail"
           component={RecipeDetail}
@@ -95,7 +99,7 @@ function Tabs() {
           },
         }}
       />
-      <Tab.Screen name="Home" component={Home} />
+
       <Tab.Screen
         name="Favourite"
         component={Favourite}
@@ -107,18 +111,14 @@ function Tabs() {
           },
         }}
       />
-  
     </Tab.Navigator>
   );
 }
 
 function HomeDrawer() {
   return (
-    <Drawer.Navigator screenOptions={{headerShown:false}}
-    
-    
-    >
-      <Drawer.Screen name="Home" component={Home} /> 
+    <Drawer.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={Home} />
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="ContactUs" component={ContactUs} />
     </Drawer.Navigator>
