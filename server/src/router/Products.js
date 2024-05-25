@@ -54,4 +54,33 @@ router.post("/add", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  try {
+    const updateproduct = await Product.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      brand: req.body.brand,
+      time: req.body.time,
+      img: req.body.img,
+      stock: req.body.stock,
+      category: req.body.category,
+      description: req.body.description,
+      isFeatured: req.body.isFeatured,
+      isActive: req.body.isActive,
+    });
+
+    res.send(updateproduct);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const deleteProduct = await Product.findByIdAndDelete(req.params.id);
+    res.send(deleteProduct);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;
