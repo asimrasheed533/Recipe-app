@@ -1,8 +1,20 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axiosBase from "axios";
 
 const axios = axiosBase.create({
   // baseURL: "http://192.168.100.198:9000/api",
   baseURL: "https://recipe-app-production-636b.up.railway.app/api",
+});
+
+axios.interceptors.request.use(async (config) => {
+  const token = JSON.parse(await AsyncStorage.getItem("user"));
+
+  console.log("Token:", token);
+
+  if (token) {
+    config.headers["x-access-token"] = `${token}`;
+  }
+  return config;
 });
 
 axios.interceptors.response.use(
