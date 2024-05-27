@@ -60,7 +60,7 @@ export default function Login() {
         .then((res) => {
           setEmail("");
           setPassword("");
-          setUser(res.data.user);
+          setUser(res.data);
           navigation.navigate("Tabs");
           console.log(res.data);
         })

@@ -60,16 +60,9 @@ router.post("/login", async (req, res) => {
       process.env.TOKEN_KEY,
       { expiresIn: "2h" }
     );
-    const responseObject = {
-      message: "Login successful",
-      user: {
-        ...user.toObject(), // Convert the Mongoose document to a plain JavaScript object
-        token: token,
-      },
-    };
 
     // Send the response
-    return res.status(200).json(responseObject);
+    return res.status(200).json(token);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
