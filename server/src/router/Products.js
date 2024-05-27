@@ -19,18 +19,20 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
-    res.send(products);
+    return res.json(products);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
 router.get("/:id", async (req, res) => {
   try {
     const products = await Product.findById();
-    res.send(products);
+    return res.json(products);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
@@ -48,9 +50,10 @@ router.post("/add", async (req, res) => {
       isActive: req.body.isActive,
     });
     await product.save();
-    res.send(product);
+    return res.json(product);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
@@ -68,18 +71,20 @@ router.put("/:id", async (req, res) => {
       isActive: req.body.isActive,
     });
 
-    res.send(updateproduct);
+    return res.json(updateproduct);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
 router.delete("/:id", async (req, res) => {
   try {
     const deleteProduct = await Product.findByIdAndDelete(req.params.id);
-    res.send(deleteProduct);
+    return res.json(deleteProduct);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 

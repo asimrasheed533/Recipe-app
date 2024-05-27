@@ -65,7 +65,7 @@ export default function Login() {
           console.log(res.data);
         })
         .catch((error) => {
-          console.error("An error occurred during login:", error);
+          console.error("An error occurred during login:", error.message);
         })
         .finally(() => {
           console.log("Request completed.");
