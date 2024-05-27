@@ -6,6 +6,7 @@ const category = require("./router/categories");
 const product = require("./router/Products");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const verifyToken = require("./middleware/auth");
 
 dotenv.config();
 
@@ -18,8 +19,12 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
-app.use((req, res, next) => {
-  res.append("ngrok-skip-browser-warning", "true");
+// for every get request we will check if the token is valid
+
+app.use("/api", (req, res, next) => {
+  if (req.method === "GET") {
+    verifyToken(req, res, next);
+  }
   next();
 });
 
