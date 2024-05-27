@@ -53,16 +53,10 @@ export default function Login() {
 
     if (!emailError && !passwordError) {
       axios
-        .post(
-          "/users/login",
-          {
-            email: email,
-            password: password,
-          },
-          {
-            timeout: 10000, // Example: 10 seconds timeout
-          }
-        )
+        .post("/users/login", {
+          email: email,
+          password: password,
+        })
         .then((res) => {
           setEmail("");
           setPassword("");

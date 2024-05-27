@@ -19,60 +19,61 @@ const User = mongoose.model("User", schema);
 router.get("/", async (req, res) => {
   try {
     const users = await User.find();
-    res.json(users);
+    return res.json(users);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findByid(req.params.id);
-    res.json(user);
+    return res.json(user);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
     const { email, password } = req.body;
 
     if (!email || !password) {
-      req.statusCode(400).json({ error: "All fields are required" });
+      return res.status(400).json({ error: "All fields are required" });
     }
 
-    if (user) {
-      const isMatch = password === user.password;
+    const user = await User.findOne({ email: req.body.email });
 
-      if (!isMatch) {
-        res.status(400).json({ error: "Invalid credentials" });
-      }
-      //jwt token
-      const token = jwt.sign(
-        { user_id: user._id, email },
-        process.env.TOKEN_KEY,
-        { expiresIn: "2h" }
-      );
-      // user.token = token;
-      // console.log(token);
-      // res.status(200).json({ message: "Login successful", user: user });
-      const responseObject = {
-        message: "Login successful",
-        user: {
-          ...user.toObject(), // Convert the Mongoose document to a plain JavaScript object
-          token: token,
-        },
-      };
-
-      // Send the response
-      res.status(200).json(responseObject);
-    } else {
-      res.status(400).json({ error: "invalid credentials" });
+    if (!user) {
+      return res.status(400).json({ error: "invalid credentials" });
     }
+
+    const isMatch = password === user.password;
+
+    if (!isMatch) {
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
+    //jwt token
+    const token = jwt.sign(
+      { user_id: user._id, email },
+      process.env.TOKEN_KEY,
+      { expiresIn: "2h" }
+    );
+    const responseObject = {
+      message: "Login successful",
+      user: {
+        ...user.toObject(), // Convert the Mongoose document to a plain JavaScript object
+        token: token,
+      },
+    };
+
+    // Send the response
+    res.status(200).json(responseObject);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
@@ -89,9 +90,10 @@ router.post("/register", async (req, res) => {
       password: req.body.password,
     });
     await newUser.save();
-    res.send(newUser);
+    return res.json(newUser);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
@@ -105,10 +107,11 @@ router.post("/forgot", async (req, res) => {
     const otp = generateOTP();
     const sendotp = await mailer.sendMail(email, otp);
     if (sendotp) {
-      res.status(200).send("OTP sent successfully");
+      return res.status(200).send("OTP sent successfully");
     }
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
@@ -120,26 +123,29 @@ router.put("/:id", async (req, res) => {
       password: req.body.password,
     });
     await updateUser.save();
-    res.json(updateUser);
+    return res.json(updateUser);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
 router.delete("/:id", async (req, res) => {
   try {
     const deleteUser = await User.findByIdAndDelete(req.params.id);
-    res.send(deleteUser);
+    return res.send(deleteUser);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
 router.post("/verify", auth, async (req, res) => {
   try {
-    res.send("User verified");
+    return res.send("User verified");
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 

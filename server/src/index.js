@@ -16,6 +16,13 @@ const port = process.env.PORT || 9000;
 //middleware
 app.use(express.json());
 app.use(cors());
+app.use(morgan("dev"));
+
+app.use((req, res, next) => {
+  res.append("ngrok-skip-browser-warning", "true");
+  next();
+});
+
 // db config
 monogoose.connect(process.env.MONGO_URL).then(() => {
   console.log("Database connected");
@@ -30,7 +37,7 @@ app.use("/api/users", userRouter);
 app.use("/api/categories", category);
 app.use("/api/products", product);
 
-  //use morgen
+//use morgen
 app.use(morgan("dev"));
 
 // listener
