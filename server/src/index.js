@@ -21,12 +21,12 @@ app.use(morgan("dev"));
 
 // for every get request we will check if the token is valid
 
-app.use("/api", (req, res, next) => {
-  if (req.method === "GET") {
-    verifyToken(req, res, next);
-  }
-  next();
-});
+// app.use("/api", (req, res, next) => {
+//   if (req.method === "GET") {
+//     verifyToken(req, res, next);
+//   }
+//   next();
+// });
 
 // db config
 monogoose.connect(process.env.MONGO_URL).then(() => {
