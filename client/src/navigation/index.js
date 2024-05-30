@@ -11,16 +11,13 @@ import Home from "../screens/Home";
 import Login from "../screens/Login";
 import HomeIcon from "../../assets/HomeIcon";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import RecipeDetail from "../screens/RecipeDetail";
 import FavouriteIcon from "../../assets/FavouriteIcon";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Profile from "../screens/Profile";
 import ContactUs from "../screens/ContactUs";
 import Forgot from "../screens/Forgot";
 import OTP from "../screens/OTP";
-import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 
 const Stack = createNativeStackNavigator();
