@@ -14,22 +14,29 @@ import BackIcon from "../../assets/BackIcon";
 import ForgotSvg from "../../assets/ForgotSvg";
 import { useNavigation } from "@react-navigation/native";
 import axios from "../utils/axios";
-export default function Forgot() {
+export default function ChangePassword() {
   const navigation = useNavigation();
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [ConfirmPassword, setConfirmPassword] = useState("");
+  const [ConfirmPasswordError, setConfirmPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleConfirmPress = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("/users/forgot", { email });
-      console.log("Response:", response.data);
-      navigation.navigate("OTP", { email });
+      if (!password) {
+        setPasswordError("Enter password");
+      }
+      if (!ConfirmPassword) {
+        setConfirmPasswordError("Enter ConfirmPassword");
+      }
+      if (password && ConfirmPassword) {
+        setConfirmPasswordError("Password does not match");
+      }
     } catch (error) {
       console.error("Error sending OTP:", error);
       alert("Error", "Failed to send OTP");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -66,7 +73,7 @@ export default function Forgot() {
                 textAlign: "center",
               }}
             >
-              Forgot
+              Change Password
             </Text>
           </View>
         </View>
@@ -82,19 +89,53 @@ export default function Forgot() {
           }}
         >
           <ForgotSvg />
-          <Text className=" mt-4 mx-4 text-xs ">Email Address</Text>
+          <Text className=" mt-4 mx-4 text-xs ">New Password</Text>
           <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
             <TextInput
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-              keyboardType="email-address"
+              value={password}
+              onChangeText={(text) => {
+                if (!text) {
+                  setPasswordError("Enter password");
+                } else if (text.length < 8) {
+                  setPasswordError("Password must be at least 8 characters");
+                } else {
+                  setPasswordError("");
+                }
+                setPassword(text);
+              }}
+              keyboardType="visible-password"
               className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
-              placeholder="Enter email"
+              placeholder="Enter confirm password"
             />
 
             <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
-              Enter the email
+              Enter the password
             </Text>
+          </View>
+          <Text className=" mt-4 mx-4 text-xs ">Confirm Password</Text>
+          <View className=" mt-1 mx-4  flex-row items-center rounded-full bg-white">
+            <TextInput
+              value={ConfirmPassword}
+              onChangeText={(text) => {
+                if (!text) {
+                  setPasswordError("Enter password");
+                } else if (text !== password) {
+                  setConfirmPasswordError("Password does not match");
+                } else {
+                  setConfirmPasswordError("");
+                }
+                setConfirmPassword(text);
+              }}
+              keyboardType="visible-password"
+              className="w-full py-3 px-4 text-xs focus:border border-transparent  border rounded-full focus:border-red-500"
+              placeholder="Enter confirm password"
+            />
+
+            {ConfirmPasswordError !== "" ? (
+              <Text className="text-xs absolute -bottom-5 text-red-500 left-0">
+                {ConfirmPasswordError}
+              </Text>
+            ) : null}
           </View>
           <View className="px-12 ">
             <TouchableOpacity
@@ -104,7 +145,7 @@ export default function Forgot() {
               {loading ? (
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
-                <Text className="text-white text-sm font-semibold	">Send</Text>
+                <Text className="text-white text-sm font-semibold	">Save</Text>
               )}
             </TouchableOpacity>
           </View>

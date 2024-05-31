@@ -19,6 +19,7 @@ import ContactUs from "../screens/ContactUs";
 import Forgot from "../screens/Forgot";
 import OTP from "../screens/OTP";
 import { useUser } from "../context/UserContext";
+import ChangePassword from "../screens/ChangePassword";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -41,6 +42,7 @@ function AppNavigation() {
         <Stack.Screen name="ContactUs" component={ContactUs} />
         <Stack.Screen name="Forgot" component={Forgot} />
         <Stack.Screen name="OTP" component={OTP} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
 
         <Stack.Screen
           name="RecipeDetail"

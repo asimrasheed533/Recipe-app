@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const mailer = require("../utils/mailer");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth");
 const generateOTP = () => {
   return Math.floor(1000 + Math.random() * 9000);
 };
@@ -44,15 +43,15 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).json({ error: "All fields are required" });
+      return res.json({ error: "All fields are required" });
     }
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(400).json({ error: "invalid credentials" });
+      return res.json({ error: "invalid credentials" });
     }
     const isMatch = password === user.password;
     if (!isMatch) {
-      return res.status(400).json({ error: "Invalid credentials" });
+      return res.json({ error: "Invalid credentials" });
     }
     //jwt token
     const token = jwt.sign(
@@ -62,7 +61,7 @@ router.post("/login", async (req, res) => {
     );
 
     // Send the response
-    return res.status(200).json(token);
+    return res.json(token);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
@@ -72,7 +71,7 @@ router.post("/login", async (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     if (!req.body.email || !req.body.password || !req.body.name) {
-      return res.status(400).json({ error: "All fields are required" });
+      return res.json({ error: "All fields are required" });
     }
 
     // const encryptedPassword = (res.body.password, 10);
@@ -98,7 +97,7 @@ router.post("/forgot", async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).send("User not found");
+      return res.json({ error: "User not found" });
     }
     const otp = generateOTP();
     user.otp = otp;
@@ -106,9 +105,9 @@ router.post("/forgot", async (req, res) => {
     const sendotp = await mailer.sendMail(email, otp);
 
     if (!sendotp) {
-      return res.status(200).send("email did not send");
+      return res.json({ error: "Something went wrong" });
     }
-    return res.status(200).send("OTP sent to email");
+    return res.json({ success: true });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
@@ -133,16 +132,32 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deleteUser = await User.findByIdAndDelete(req.params.id);
-    return res.send(deleteUser);
+    return res.json(deleteUser);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
   }
 });
 
-router.post("/verify", auth, async (req, res) => {
+router.post("/verify", async (req, res) => {
   try {
-    return res.send("User verified");
+    const { otp, email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.json({ error: "User not found" });
+    }
+
+    if (user.otp !== otp) {
+      return res.json({ error: "Invalid OTP" });
+    }
+
+    user.otp = null;
+
+    await user.save();
+
+    return res.json({ success: true });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });

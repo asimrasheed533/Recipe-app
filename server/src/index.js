@@ -6,7 +6,6 @@ const category = require("./router/categories");
 const product = require("./router/Products");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const verifyToken = require("./middleware/auth");
 
 dotenv.config();
 
