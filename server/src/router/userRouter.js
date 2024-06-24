@@ -53,18 +53,19 @@ router.post("/login", async (req, res) => {
     if (!isMatch) {
       return res.json({ error: "Invalid credentials" });
     }
-    //jwt token
-    const token = jwt.sign(
-      { user_id: user._id, email },
-      process.env.TOKEN_KEY,
-      { expiresIn: "2h" }
-    );
+    // //jwt token
+    // const token = jwt.sign(
+    //   { user_id: user._id, email },
+    //   process.env.TOKEN_KEY,
+    //   { expiresIn: "2h" }
+    // );
 
-    // Send the response
-    return res.json(token);
+    // // Send the response
+    // return res.json(token);
+    return res.json(user);
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ error: "Something went wrong" });
+    return res.status(500).json({ error: err });
   }
 });
 
