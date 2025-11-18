@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "cd server && npm i",
-    "start": "cd server && npm run start",
+    "build": "node api.js && cd server && npm i",
+    "start": "node api.js && cd server && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +12,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "expo-image": "~1.12.12"
+    "expo-image": "~1.13.0"
   }
 }
