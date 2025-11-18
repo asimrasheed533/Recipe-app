@@ -12,6 +12,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "expo-image": "~1.12.12"
+    "expo-image": "~1.13.0"
   }
 }
